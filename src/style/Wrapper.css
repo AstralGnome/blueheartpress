@@ -1,0 +1,7 @@
+.Wrapper {
+  width: 600px;
+  height: 90vh;
+  margin: 20px auto auto auto;
+  text-align: center;
+  border: 1px solid grey;
+}
