@@ -4,7 +4,9 @@ import Wrapper from "./components/Wrapper"
 import Navbar from "./components/Navbar"
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
-import About from "./pages/About";
+import AboutMe from "./pages/AboutMe";  
+import AboutYou from "./pages/AboutYou";  
+import About from "./pages/About";  
 import ErrorPage from "./pages/ErrorPage";
 import Profile from "./pages/Profile";
 
@@ -22,6 +24,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home/>}/>
             <Route path="/contact" element={<Contact/>}/>
+            <Route path="/about/me" element={<AboutMe/>}/>
+            <Route path="/about/you" element={<AboutYou/>}/>
             <Route path="/about" element={<About/>}/>
             <Route path="/profile" element={<Profile/>}/>
             <Route path="/profile/:username" element={<Profile/>}/>
