@@ -9,6 +9,7 @@ import AboutYou from "./pages/AboutYou";
 import About from "./pages/About";  
 import ErrorPage from "./pages/ErrorPage";
 import Profile from "./pages/Profile";
+import Counter from "./components/Counter";
 
 // const routes = {
 //   "/": () =><Home />,
@@ -31,6 +32,7 @@ function App() {
             <Route path="/profile/:username" element={<Profile/>}/>
             <Route path="*" element={<ErrorPage/>}/>
           </Routes>
+        <Counter/>
       </Wrapper>
     </Router>
   );
