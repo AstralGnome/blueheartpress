@@ -26,10 +26,10 @@ function Counter() {
 
   return (
     <>
-      <div className = "Counter" >
-        <button onClick={decrement}>-</button>
-        <span>{state.count}</span>
-        <button onClick={increment}>+</button>
+      <div className = "Parent" >
+        <button className="PlusMinus" onClick={decrement}>DECREMENT</button>
+        <div className="Count">{state.count}</div>
+        <button className="PlusMinus" onClick={increment}>INCREMENT</button>
       </div>
     </>
   )
