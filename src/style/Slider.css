@@ -1,0 +1,37 @@
+.Slider {
+  padding-top: 70px;
+  position: relative;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+}
+.RightArrow {
+  position: absolute;
+  top: 175px;
+  right: 50px;
+  font-size: 3rem;
+  color: aquamarine;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+
+}
+.LeftArrow {
+  position: absolute;
+  top: 175px;
+  left: 50px;
+  font-size: 3rem;
+  color: aquamarine;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+}
+.Slide {
+  opacity: 0;
+  transition-duration: 1s ease;
+}
+.SlideActive {
+  opacity: 1;
+  transition-duration: 1s;
+  transform: scale(1.08)
+}
