@@ -10,6 +10,7 @@ import About from "./pages/About";
 import ErrorPage from "./pages/ErrorPage";
 import Profile from "./pages/Profile";
 import Counter from "./components/Counter";
+import ImageSlider from "./components/ImageSlider/ImageSlider";
 
 // const routes = {
 //   "/": () =><Home />,
@@ -32,6 +33,7 @@ function App() {
             <Route path="/profile/:username" element={<Profile/>}/>
             <Route path="*" element={<ErrorPage/>}/>
           </Routes>
+          <ImageSlider/>
       </Wrapper>
     </Router>
   );
