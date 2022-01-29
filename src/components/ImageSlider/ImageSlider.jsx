@@ -1,8 +1,12 @@
 import React from 'react';
+import "../../style/ComicPages.css"
 import {SliderData} from "./SliderData.js"
-import ComicPages from "../../style/ComicPages.css"
+import { useState } from 'react/cjs/react.development';
 
 const ImageSlider = () => {
+const [current, setCurrent] = useState(0);
+
+
   return (
     <>
       {SliderData.map((slide, index) => {
