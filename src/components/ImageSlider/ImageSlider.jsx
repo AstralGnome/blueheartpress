@@ -4,6 +4,7 @@ import "../../style/Slider.css"
 import {SliderData} from "./SliderData.js"
 import { useState } from 'react/cjs/react.development';
 import {FaArrowAltCircleRight, FaArrowAltCircleLeft} from "react-icons/fa"
+import "animate.css";
 
 const ImageSlider = ({slides}) => {
 const [current, setCurrent] = useState(0);
@@ -25,7 +26,7 @@ if (!Array.isArray(slides) || slides.length <= 0) {
   return (
     <>
     <div className="PageControlCenter">
-      <FaArrowAltCircleLeft className="animate__pulse LeftArrow" onClick={prevSlide}/>
+      <FaArrowAltCircleLeft className="LeftArrow" onClick={prevSlide}/>
       <div className="PageNumber">Page {current + 1}</div>
       <FaArrowAltCircleRight className="RightArrow" onClick={nextSlide}/>
     </div>

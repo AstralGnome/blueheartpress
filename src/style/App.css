@@ -1,3 +1,10 @@
+body {
+  height: 100%;
+  margin: 0;
+  background: url("../assets/Video/Valley-20s-1920px.svg");
+  background-size: cover;
+}
+
 .App {
   text-align: center;
 }

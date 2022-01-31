@@ -24,6 +24,15 @@
   cursor: pointer;
   user-select: none;
 }
+
+.LeftArrow:hover, .RightArrow:hover {
+  opacity: 0.70;
+}
+
+.LeftArrow:active , .RightArrow:active {
+  color: rgb(77, 136, 224)
+}
+
 .Slide {
   opacity: 0;
   transition-duration: 1s ease;

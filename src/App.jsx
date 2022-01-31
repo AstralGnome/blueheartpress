@@ -10,25 +10,26 @@ import About from "./pages/About";
 import ErrorPage from "./pages/ErrorPage";
 import Profile from "./pages/Profile";
 import Footer from "./components/Footer";
-
 function App() {
   return (
-    <Router>
-      <Wrapper>
-        <Navbar/>
-          <Routes>
-            <Route path="/" element={<Home/>}/>
-            <Route path="/contact" element={<Contact/>}/>
-            <Route path="/about/me" element={<AboutMe/>}/>
-            <Route path="/about/you" element={<AboutYou/>}/>
-            <Route path="/about" element={<About/>}/>
-            <Route path="/profile" element={<Profile/>}/>
-            <Route path="/profile/:username" element={<Profile/>}/>
-            <Route path="*" element={<ErrorPage/>}/>
-          </Routes>
-      </Wrapper>
-      <Footer/>
-    </Router>
+      <body> 
+      <Router>
+        <Wrapper>
+          <Navbar/>
+            <Routes>
+              <Route path="/" element={<Home/>}/>
+              <Route path="/contact" element={<Contact/>}/>
+              <Route path="/about/me" element={<AboutMe/>}/>
+              <Route path="/about/you" element={<AboutYou/>}/>
+              <Route path="/about" element={<About/>}/>
+              <Route path="/profile" element={<Profile/>}/>
+              <Route path="/profile/:username" element={<Profile/>}/>
+              <Route path="*" element={<ErrorPage/>}/>
+            </Routes>
+          </Wrapper>
+        <Footer/>
+      </Router>
+      </body>
   );
 }
 
