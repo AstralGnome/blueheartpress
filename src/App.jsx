@@ -9,15 +9,7 @@ import AboutYou from "./pages/AboutYou";
 import About from "./pages/About";  
 import ErrorPage from "./pages/ErrorPage";
 import Profile from "./pages/Profile";
-import Counter from "./components/Counter";
-import ImageSlider from "./components/ImageSlider/ImageSlider";
-import { SliderData } from "./components/ImageSlider/SliderData";
-
-// const routes = {
-//   "/": () =><Home />,
-//   "/about*": () =><About />,
-//   "/contact/:name": ({name}) =><Contact name={name}/>
-// }
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -34,8 +26,8 @@ function App() {
             <Route path="/profile/:username" element={<Profile/>}/>
             <Route path="*" element={<ErrorPage/>}/>
           </Routes>
-          
       </Wrapper>
+      <Footer/>
     </Router>
   );
 }

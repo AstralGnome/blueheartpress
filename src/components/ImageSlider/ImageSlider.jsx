@@ -24,9 +24,11 @@ if (!Array.isArray(slides) || slides.length <= 0) {
 
   return (
     <>
-      <FaArrowAltCircleLeft className="LeftArrow" onClick={prevSlide}/>
+    <div className="PageControlCenter">
+      <FaArrowAltCircleLeft className="animate__pulse LeftArrow" onClick={prevSlide}/>
+      <div className="PageNumber">Page {current + 1}</div>
       <FaArrowAltCircleRight className="RightArrow" onClick={nextSlide}/>
-    
+    </div>
     <section className="Slider">
       {SliderData.map((slide, index) => {
         return (
@@ -36,7 +38,13 @@ if (!Array.isArray(slides) || slides.length <= 0) {
           </div>
         ) 
       })}
+      
     </section>
+    <div className="PageControlCenter">
+      <FaArrowAltCircleLeft className="LeftArrow" onClick={prevSlide}/>
+      <div className="PageNumber">Page {current + 1}</div>
+      <FaArrowAltCircleRight className="RightArrow" onClick={nextSlide}/>
+    </div>
     </>
   )
 };
