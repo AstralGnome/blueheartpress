@@ -1,6 +1,6 @@
 import React from 'react';
-import "../../style/ComicPages.css"
-import "../../style/Slider.css"
+import "../../style/ComicPages.scss"
+import "../../style/Slider.scss"
 import {SliderData} from "./SliderData.js"
 import { useState } from 'react/cjs/react.development';
 import {FaArrowAltCircleRight, FaArrowAltCircleLeft} from "react-icons/fa"
@@ -8,6 +8,7 @@ import "animate.css";
 
 const ImageSlider = ({slides}) => {
 const [current, setCurrent] = useState(0);
+const [currentToggle, setToggle] = useState(true);
 const length = slides.length
 
 const nextSlide = () => {
@@ -17,7 +18,15 @@ const prevSlide = () => {
   setCurrent(current === 0 ? length -1 : current - 1);
 }
 
-console.log(current)
+const Toggler = () => {
+  if (currentToggle === true) {
+    setToggle(false)
+  } else if (currentToggle === false) {
+    setToggle(true)
+  }
+}
+
+console.log(currentToggle)
 
 if (!Array.isArray(slides) || slides.length <= 0) {
   return null;
@@ -25,6 +34,7 @@ if (!Array.isArray(slides) || slides.length <= 0) {
 
   return (
     <>
+    <button className="leftArrow" onClick={Toggler}>Toggle</button>
     <div className="PageControlCenter">
       <FaArrowAltCircleLeft className="LeftArrow" onClick={prevSlide}/>
       <div className="PageNumber">Page {current + 1}</div>
@@ -35,7 +45,7 @@ if (!Array.isArray(slides) || slides.length <= 0) {
         return (
           
           <div className={ index === current ? "SlideActive" : "Slide"} key={index}>
-            { index === current && (<img className="ComicPages" src={slide.image} alt="Strange Assassins, short comic."/>)} 
+            { index === current && (<img className={currentToggle === true ? "ComicPages" : "ComicPagesLarge"} src={slide.image} alt="Strange Assassins, short comic."/>)} 
           </div>
         ) 
       })}

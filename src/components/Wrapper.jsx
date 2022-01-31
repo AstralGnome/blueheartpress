@@ -1,4 +1,4 @@
-import "../style/Wrapper.css"
+import "../style/Wrapper.scss"
 
 function Wrapper ({ children }) {
   return (

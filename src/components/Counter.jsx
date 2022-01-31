@@ -1,5 +1,5 @@
 import React, {useReducer} from "react"
-import "../style/Counter.css"
+import "../style/Counter.scss"
 
 function reducer(state, action) {
   switch (action.type) {
@@ -14,7 +14,7 @@ function reducer(state, action) {
 
 function Counter() {
   
-  const [state, dispatch] = useReducer(reducer, {count:8})
+  const [state, dispatch] = useReducer(reducer, {count:0})
 
   function increment() {
     dispatch({type: "increment"})
