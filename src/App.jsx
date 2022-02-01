@@ -1,7 +1,6 @@
 import "./style/App.scss"
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
 import Wrapper from "./components/Wrapper"
-import Navbar from "./components/Navbar"
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
 import AboutMe from "./pages/AboutMe";  
@@ -10,12 +9,13 @@ import About from "./pages/About";
 import ErrorPage from "./pages/ErrorPage";
 import Profile from "./pages/Profile";
 import Footer from "./components/Footer";
+import Banner from "./components/Banner";
 function App() {
   return (
       <body> 
       <Router>
         <Wrapper>
-          <Navbar/>
+          <Banner/>
             <Routes>
               <Route path="/" element={<Home/>}/>
               <Route path="/contact" element={<Contact/>}/>
