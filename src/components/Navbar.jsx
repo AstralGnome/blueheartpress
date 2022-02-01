@@ -4,6 +4,7 @@ import "../style/Navbar.scss"
 function Navbar () {
   return (
     <div>
+      <img src="https://github.com/AstralGnome/blueheartpress/blob/main/src/assets/Images/Banner.jpg" alt="important info"></img>
       <h1>Welcome to Blue Heart Press</h1>
         <div className="Navbar"> 
           <Link to="/">Home</Link>
