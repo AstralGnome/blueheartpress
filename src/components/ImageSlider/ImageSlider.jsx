@@ -3,7 +3,8 @@ import "../../style/ComicPages.scss"
 import "../../style/Slider.scss"
 import {SliderData} from "./SliderData.js"
 import { useState } from 'react/cjs/react.development';
-import {FaArrowAltCircleRight, FaArrowAltCircleLeft} from "react-icons/fa"
+import {FaArrowAltCircleRight, FaArrowAltCircleLeft} from "react-icons/fa";
+import {ImZoomIn, ImZoomOut} from "react-icons/im"
 import "animate.css";
 
 const ImageSlider = ({slides}) => {
@@ -34,7 +35,9 @@ if (!Array.isArray(slides) || slides.length <= 0) {
 
   return (
     <>
-    <button className="leftArrow" onClick={Toggler}>Toggle</button>
+    <div className="ToggleParent">
+      {currentToggle === true ? <ImZoomIn className="Toggler" onClick={Toggler} /> : <ImZoomOut className="Toggler" onClick={Toggler}/>}
+    </div>
     <div className="PageControlCenter">
       <FaArrowAltCircleLeft className="LeftArrow" onClick={prevSlide}/>
       <div className="PageNumber">Page {current + 1}</div>
@@ -51,11 +54,11 @@ if (!Array.isArray(slides) || slides.length <= 0) {
       })}
       
     </section>
-    <div className="PageControlCenter">
+    {/* <div className="PageControlCenter">
       <FaArrowAltCircleLeft className="LeftArrow" onClick={prevSlide}/>
       <div className="PageNumber">Page {current + 1}</div>
       <FaArrowAltCircleRight className="RightArrow" onClick={nextSlide}/>
-    </div>
+    </div> */}
     </>
   )
 };

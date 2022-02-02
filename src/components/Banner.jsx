@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import "../style/Banner.scss"
 
 function Navbar () {

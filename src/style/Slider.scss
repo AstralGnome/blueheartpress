@@ -9,28 +9,30 @@
   padding-left: 40px;
   top: 175px;
   font-size: 3rem;
-  color: darkblue;
   z-index: 10;
   cursor: pointer;
   user-select: none;
-
+  color: darkblue;
+  opacity: 50%;
 }
 .LeftArrow {
   padding-right: 40px;
   top: 175px;
   font-size: 3rem;
-  color: darkblue;
   z-index: 10;
   cursor: pointer;
   user-select: none;
+  color: darkblue;
+  opacity: 50%;
 }
 
-.LeftArrow:hover, .RightArrow:hover {
+.LeftArrow:hover, .RightArrow:hover, .Toggler:hover {
   opacity: 0.70;
 }
 
-.LeftArrow:active , .RightArrow:active {
-  color: rgb(77, 136, 224)
+.LeftArrow:active , .RightArrow:active, .Toggler:active {
+  color: rgb(63, 116, 197);
+  transform: scale(.95);
 }
 
 .Slide {
@@ -51,8 +53,31 @@
   align-items: center;
 }
 .PageControlCenter {
+  width: 100%;
   display: flex;
   justify-content:center;
-  padding-top: 20px;
-  padding-bottom: 10px;
+  margin-bottom: 25px;
+  background-color: transparent;
+}
+
+.Toggler {
+  align-items: right;
+  margin-top: 10px;
+  margin-right: 10px;
+  padding: 8px;
+  border-radius: 50%;
+  border: black;
+  background-color: azure;
+  font-size: 1.5rem;
+  top: 175px;
+  color: darkblue;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+  opacity: 50%;
+
+}
+
+.ToggleParent {
+  float: right;
 }

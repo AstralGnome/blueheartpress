@@ -27,7 +27,6 @@ function App() {
               <Route path="*" element={<ErrorPage/>}/>
             </Routes>
           </Wrapper>
-        <Footer/>
       </Router>
       </body>
   );
