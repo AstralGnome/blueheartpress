@@ -8,7 +8,6 @@ import AboutYou from "./pages/AboutYou";
 import About from "./pages/About";  
 import ErrorPage from "./pages/ErrorPage";
 import Profile from "./pages/Profile";
-import Footer from "./components/Footer";
 import Banner from "./components/Banner";
 function App() {
   return (

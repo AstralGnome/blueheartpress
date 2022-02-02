@@ -6,6 +6,7 @@ import { useState } from 'react/cjs/react.development';
 import {FaArrowAltCircleRight, FaArrowAltCircleLeft} from "react-icons/fa";
 import {ImZoomIn, ImZoomOut} from "react-icons/im"
 import "animate.css";
+import SideSheetComponent from '../SideSheet';
 
 const ImageSlider = ({slides}) => {
 const [current, setCurrent] = useState(0);
@@ -27,8 +28,6 @@ const Toggler = () => {
   }
 }
 
-console.log(currentToggle)
-
 if (!Array.isArray(slides) || slides.length <= 0) {
   return null;
 }
@@ -36,11 +35,12 @@ if (!Array.isArray(slides) || slides.length <= 0) {
   return (
     <>
     <div className="ToggleParent">
+      <SideSheetComponent/>
       {currentToggle === true ? <ImZoomIn className="Toggler" onClick={Toggler} /> : <ImZoomOut className="Toggler" onClick={Toggler}/>}
     </div>
     <div className="PageControlCenter">
       <FaArrowAltCircleLeft className="LeftArrow" onClick={prevSlide}/>
-      <div className="PageNumber">Page {current + 1}</div>
+      <div className="PageNumber">Page {current + 1} of {slides.length}</div>
       <FaArrowAltCircleRight className="RightArrow" onClick={nextSlide}/>
     </div>
     <section className="Slider">
@@ -54,11 +54,6 @@ if (!Array.isArray(slides) || slides.length <= 0) {
       })}
       
     </section>
-    {/* <div className="PageControlCenter">
-      <FaArrowAltCircleLeft className="LeftArrow" onClick={prevSlide}/>
-      <div className="PageNumber">Page {current + 1}</div>
-      <FaArrowAltCircleRight className="RightArrow" onClick={nextSlide}/>
-    </div> */}
     </>
   )
 };

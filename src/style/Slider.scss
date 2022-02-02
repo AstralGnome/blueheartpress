@@ -7,7 +7,7 @@
   padding-bottom: 75px;
 }
 .RightArrow {
-  padding-left: 40px;
+  margin-left: 70px;
   top: 175px;
   font-size: 3rem;
   z-index: 10;
@@ -17,7 +17,7 @@
   opacity: 50%;
 }
 .LeftArrow {
-  padding-right: 40px;
+  margin-right: 70px;
   top: 175px;
   font-size: 3rem;
   z-index: 10;
@@ -27,11 +27,11 @@
   opacity: 50%;
 }
 
-.LeftArrow:hover, .RightArrow:hover, .Toggler:hover {
+.LeftArrow:hover, .RightArrow:hover, .Toggler:hover, .SideSheetButton:hover {
   opacity: 0.70;
 }
 
-.LeftArrow:active , .RightArrow:active, .Toggler:active {
+.LeftArrow:active , .RightArrow:active, .Toggler:active, .SideSheetButton:active {
   color: rgb(63, 116, 197);
   transform: scale(.95);
 }
@@ -46,7 +46,7 @@
   transform: scale(1.08)
 }
 .PageNumber {
-  width: 100px;
+  width: 150px;
   font-size: 1.25rem;
   float: center;
   display: flex;
@@ -62,9 +62,8 @@
 }
 
 .Toggler {
-  align-items: right;
   margin-top: 10px;
-  margin-right: 10px;
+  margin-right: 5%;
   padding: 8px;
   border-radius: 50%;
   border: black;
@@ -80,5 +79,22 @@
 }
 
 .ToggleParent {
-  float: right;
+  display: flex;
+  justify-content: space-between;
+}
+
+.SideSheetButton {
+  margin-top: 10px;
+  margin-left: 5%;
+  padding: 8px;
+  border-radius: 50%;
+  border: black;
+  background-color: azure;
+  font-size: 1.5rem;
+  top: 175px;
+  color: darkblue;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+  opacity: 50%;
 }
