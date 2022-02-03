@@ -11,7 +11,6 @@ import Profile from "./pages/Profile";
 import Banner from "./components/Banner";
 function App() {
   return (
-      <body> 
       <Router>
         <Wrapper>
           <Banner/>
@@ -27,7 +26,6 @@ function App() {
             </Routes>
           </Wrapper>
       </Router>
-      </body>
   );
 }
 
