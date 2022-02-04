@@ -9,9 +9,11 @@ import About from "./pages/About";
 import ErrorPage from "./pages/ErrorPage";
 import Profile from "./pages/Profile";
 import Banner from "./components/Banner";
+import Navbar from "./components/Navbar";
 function App() {
   return (
       <Router>
+      <Navbar/>
         <Wrapper>
           <Banner/>
             <Routes>

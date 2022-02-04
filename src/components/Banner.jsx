@@ -1,10 +1,10 @@
 import "../style/Banner.scss"
 
-function Navbar () {
+function Banner () {
   return (
     <div className="BGI">
         
     </div>
   )
 }
-export default Navbar;
+export default Banner;
