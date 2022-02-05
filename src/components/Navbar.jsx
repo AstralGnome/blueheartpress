@@ -1,4 +1,4 @@
-import { Button, CircleArrowRightIcon, EditIcon, IconButton, Menu, MenuIcon, PeopleIcon, Popover, TrashIcon } from 'evergreen-ui';
+import { CircleArrowRightIcon, EditIcon, IconButton, Menu, MenuIcon, PeopleIcon, Popover, TrashIcon } from 'evergreen-ui';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { position } from 'ui-box';
