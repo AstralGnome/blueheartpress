@@ -15,7 +15,6 @@ function App() {
       <Router>
       <Navbar/>
         <Wrapper>
-          <Banner/>
             <Routes>
               <Route path="/" element={<Home/>}/>
               <Route path="/contact" element={<Contact/>}/>

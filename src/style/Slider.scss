@@ -15,7 +15,8 @@
   user-select: none;
   color: darkblue;
   opacity: 50%;
-
+  border-radius: 50%;
+  box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, .5);
 }
 .LeftArrow {
   margin-right: 40px;
@@ -26,6 +27,9 @@
   user-select: none;
   color: darkblue;
   opacity: 50%;
+  border-radius: 50%;
+  box-shadow: -1px 1px 3px 1px rgba(0, 0, 0, .5);
+  
 }
 
 .LeftArrow:hover, .RightArrow:hover, .Toggler:hover, .SideSheetButton:hover {
@@ -33,7 +37,7 @@
 }
 
 .LeftArrow:active , .RightArrow:active, .Toggler:active, .SideSheetButton:active {
-  color: rgb(63, 116, 197);
+  color: rgb(25, 91, 190);
   transform: scale(.95);
 }
 
@@ -76,7 +80,7 @@
   cursor: pointer;
   user-select: none;
   opacity: 50%;
-  box-shadow: 1px 1px 4px 1px rgba(0, 0, 0,);
+  box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, .5);
 
 }
 
@@ -99,7 +103,7 @@
   cursor: pointer;
   user-select: none;
   opacity: 50%;
-  box-shadow: 1px 1px 4px 1px rgba(0, 0, 0,);
+  box-shadow: -1px 1px 4px 1px rgba(0, 0, 0, .5);
 
 }
 .EverGreenTab {

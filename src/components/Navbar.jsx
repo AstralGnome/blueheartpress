@@ -12,34 +12,22 @@ function Navbar() {
   position={position.BOTTOM_LEFT}
   content={
     <Menu>
+      <Menu.Group title="Navigation">
+        <Link to="/"><Menu.Item icon={PeopleIcon}>Home</Menu.Item></Link>
+        <Link to="/about"><Menu.Item icon={CircleArrowRightIcon}>About</Menu.Item></Link>
+        <Link to="/contact"><Menu.Item icon={EditIcon}>Contact</Menu.Item></Link>
+      </Menu.Group>
       <Menu.Group title="Actions">
-        <Menu.Item icon={PeopleIcon}>Share...</Menu.Item>
-        <Menu.Item icon={CircleArrowRightIcon}>Move...</Menu.Item>
-        <Menu.Item icon={EditIcon} secondaryText="⌘R">
-          Rename...
-        </Menu.Item>
+        <Link to="/profile"><Menu.Item icon={PeopleIcon}>Logout</Menu.Item></Link>
+        <Link to="/"><Menu.Item icon={PeopleIcon}>Share</Menu.Item></Link>
+        <Menu.Item icon={EditIcon} intent="danger">Edit</Menu.Item>
       </Menu.Group>
       <Menu.Divider />
-      <Menu.Group title="destructive">
-        <Menu.Item icon={TrashIcon} intent="danger">
-          Delete...
-        </Menu.Item>
-      </Menu.Group>
     </Menu>
   }
 >
-  <IconButton className="Navbar" icon={MenuIcon}/>
+  <IconButton className="Navbar" iconSize={"25px"} icon={MenuIcon}/>
 </Popover>
-
-
-  <div className="Navbar">
-    <div className="Navbar"> 
-          <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
-          <Link to="/contact">Contact</Link>
-          <Link to="/profile">Profile</Link>
-        </div>
-  </div>
   </>
   )
 }
