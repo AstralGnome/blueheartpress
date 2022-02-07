@@ -26,7 +26,7 @@ function Navbar() {
     </Menu>
   }
 >
-  <IconButton className="Navbar" iconSize={"25px"} icon={MenuIcon}/>
+  <IconButton className="Navbar" iconSize={"21px"} icon={MenuIcon}/>
 </Popover>
   </>
   )

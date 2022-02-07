@@ -6,10 +6,10 @@ import { SliderData } from '../components/ImageSlider/SliderData';
 
 function Home() {
   return (
-    <>
-    <Banner/>
+    <div className="Home">
+      <Banner/>
       <ImageSlider slides={SliderData}/>
-    </>
+    </div>
   )
 }
 

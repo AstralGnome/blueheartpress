@@ -3,6 +3,7 @@ import React from 'react';
 import "../style/Slider.scss"
 import {BsFillInfoCircleFill} from "react-icons/bs"
 import "animate.css"
+import "../style/SideSheet.scss"
 
 function SideSheetComponent() {
 const [selectedIndex, setSelectedIndex] = React.useState(0)
@@ -34,7 +35,7 @@ const Summary = [<Heading color="white">Summary</Heading>, "The Words of Lord Du
             flexDirection: 'column'
           }}>
           <Pane zIndex={1} flexShrink={0} elevation={0} backgroundColor="black">
-          <Pane padding={16} borderBottom="muted">
+          <Pane className="SideHeading" padding={16} borderBottom="muted">
             <Heading size={600} color="white">Strange Assassins</Heading>
             <Paragraph size={400} color="white">Story: Keenan Reed / Art: Eugenio Belgrado</Paragraph>
           </Pane>
