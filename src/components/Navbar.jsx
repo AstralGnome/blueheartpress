@@ -1,6 +1,5 @@
-import { CircleArrowRightIcon, EditIcon, GlobeIcon, HandIcon, HomeIcon, IconButton, InfoSignIcon, LogOutIcon, Menu, MenuIcon, PeopleIcon, Popover, ShareIcon, StarEmptyIcon, TrashIcon, UserIcon } from 'evergreen-ui';
+import { EditIcon, HandIcon, HomeIcon, IconButton, InfoSignIcon, Menu, MenuIcon, Popover, ShareIcon, StarEmptyIcon, UserIcon } from 'evergreen-ui';
 import React from 'react';
-import { BsFillPersonFill, BsFillShareFill, BsPerson } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { position } from 'ui-box';
 import "../style/Navbar.scss"
@@ -11,7 +10,7 @@ function Navbar() {
     <Popover
   position={position.BOTTOM_LEFT}
   content={
-    <Menu >
+    <Menu>
       <div className="Menu">
         <div className="MenuHeading" title="Navigation">Navigation</div>
         <Link className="LinkText" to="/"><HomeIcon size={24} className="MenuIcon"/>Home</Link>
@@ -30,7 +29,7 @@ function Navbar() {
     </Menu>
   }
 >
-  <IconButton className="Navbar" iconSize={"21px"} icon={MenuIcon}/>
+  <IconButton className="Navbar" iconSize={25} icon={MenuIcon}/>
 </Popover>
   </>
   )

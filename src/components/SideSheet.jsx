@@ -9,8 +9,6 @@ function SideSheetComponent() {
 const [selectedIndex, setSelectedIndex] = React.useState(0)
 const [isShown, setIsShown] = React.useState(false)
   
-console.log(selectedIndex)
-
 const ExtraContent = [<Heading color="white">Concept Art</Heading>,
 <img class= "ExtraContent" src="../Images/ExtraContent/Extra1.jpg" alt="intriguing "></img>,
 <img class= "ExtraContent" src="../Images/ExtraContent/Extra2.jpg" alt="intriguing "></img>,
