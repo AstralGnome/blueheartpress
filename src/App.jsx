@@ -12,19 +12,19 @@ import Navbar from "./components/Navbar";
 function App() {
   return (
       <Router>
-      <Navbar/>
-        <Wrapper>
-            <Routes>
-              <Route path="/" element={<Home/>}/>
-              <Route path="/contact" element={<Contact/>}/>
-              <Route path="/about/me" element={<AboutMe/>}/>
-              <Route path="/about/you" element={<AboutYou/>}/>
-              <Route path="/about" element={<About/>}/>
-              <Route path="/profile" element={<Profile/>}/>
-              <Route path="/profile/:username" element={<Profile/>}/>
-              <Route path="*" element={<ErrorPage/>}/>
-            </Routes>
-          </Wrapper>
+          <Navbar/>
+            <Wrapper>
+              <Routes>
+                <Route path="/" element={<Home/>}/>
+                <Route path="/contact" element={<Contact/>}/>
+                <Route path="/about" element={<About/>} component={About}/>
+                <Route path="/about/me" element={<AboutMe/>}/>
+                <Route path="/about/you" element={<AboutYou/>}/>
+                <Route path="/profile" element={<Profile/>}/>
+                <Route path="/profile/:username" element={<Profile/>}/>
+                <Route path="*" element={<ErrorPage/>}/>
+              </Routes>
+            </Wrapper>
       </Router>
   );
 }

@@ -6,7 +6,7 @@ import { SliderData } from '../components/ImageSlider/SliderData';
 
 function Home() {
   return (
-    <div className="Home">
+    <div>
       <Banner/>
       <ImageSlider slides={SliderData}/>
     </div>
