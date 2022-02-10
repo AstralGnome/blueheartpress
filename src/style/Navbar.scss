@@ -18,6 +18,7 @@
 
 .Navbar:active {
   background-color:rgba(124, 124, 124, 0.5) !important;
+  box-shadow: 1px 1px 4px 2px rgba(212, 212, 212, 0.835) !important;
 }
 
 .Menu {
@@ -37,7 +38,7 @@
   
 .MenuIcon {
   color: rgb(218, 204, 255);
-  padding-top: 1px;
+  padding-bottom: 4px;
   padding-right: 10px;
   font-size: 17px;
 }
