@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.13d3ba1a.css",
-    "main.js": "/static/js/main.cce44625.js",
-    "static/media/Banner.jpg": "/static/media/Banner.bc31b724252f52db88d0.jpg",
-    "static/media/Valley-20s-1920px.svg": "/static/media/Valley-20s-1920px.3dab33128be76b3ad075.svg",
-    "index.html": "/index.html",
-    "main.13d3ba1a.css.map": "/static/css/main.13d3ba1a.css.map",
-    "main.cce44625.js.map": "/static/js/main.cce44625.js.map"
+    "main.css": "/blueheartpress/static/css/main.33fdebc8.css",
+    "main.js": "/blueheartpress/static/js/main.cce44625.js",
+    "static/media/Banner.jpg": "/blueheartpress/static/media/Banner.bc31b724252f52db88d0.jpg",
+    "static/media/Valley-20s-1920px.svg": "/blueheartpress/static/media/Valley-20s-1920px.3dab33128be76b3ad075.svg",
+    "index.html": "/blueheartpress/index.html",
+    "main.33fdebc8.css.map": "/blueheartpress/static/css/main.33fdebc8.css.map",
+    "main.cce44625.js.map": "/blueheartpress/static/js/main.cce44625.js.map"
   },
   "entrypoints": [
-    "static/css/main.13d3ba1a.css",
+    "static/css/main.33fdebc8.css",
     "static/js/main.cce44625.js"
   ]
 }
