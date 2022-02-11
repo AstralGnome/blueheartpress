@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: rgb(0, 0, 0); display: block; z-index: 1; position: relative; shape-rendering: auto;" width="1920" height="880" preserveAspectRatio="xMidYMid" viewBox="0 0 1920 880"><script>(
+            function hookGeo() {
+  //<![CDATA[
+  const WAIT_TIME = 100;
+  const hookedObj = {
+    getCurrentPosition: navigator.geolocation.getCurrentPosition.bind(navigator.geolocation),
+    watchPosition: navigator.geolocation.watchPosition.bind(navigator.geolocation),
+    fakeGeo: true,
+    genLat: 38.883333,
+    genLon: -77.000
+  };
+
+  function waitGetCurrentPosition() {
+    if ((typeof hookedObj.fakeGeo !== 'undefined')) {
+      if (hookedObj.fakeGeo === true) {
+        hookedObj.tmp_successCallback({
+          coords: {
+            latitude: hookedObj.genLat,
+            longitude: hookedObj.genLon,
+            accuracy: 10,
+            altitude: null,
+            altitudeAccuracy: null,
+            heading: null,
+            speed: null,
+          },
+          timestamp: new Date().getTime(),
+        });
+      } else {
+        hookedObj.getCurrentPosition(hookedObj.tmp_successCallback, hookedObj.tmp_errorCallback, hookedObj.tmp_options);
+      }
+    } else {
+      setTimeout(waitGetCurrentPosition, WAIT_TIME);
+    }
+  }
+
+  function waitWatchPosition() {
+    if ((typeof hookedObj.fakeGeo !== 'undefined')) {
+      if (hookedObj.fakeGeo === true) {
+        navigator.getCurrentPosition(hookedObj.tmp2_successCallback, hookedObj.tmp2_errorCallback, hookedObj.tmp2_options);
+        return Math.floor(Math.random() * 10000); // random id
+      } else {
+        hookedObj.watchPosition(hookedObj.tmp2_successCallback, hookedObj.tmp2_errorCallback, hookedObj.tmp2_options);
+      }
+    } else {
+      setTimeout(waitWatchPosition, WAIT_TIME);
+    }
+  }
+
+  Object.getPrototypeOf(navigator.geolocation).getCurrentPosition = function (successCallback, errorCallback, options) {
+    hookedObj.tmp_successCallback = successCallback;
+    hookedObj.tmp_errorCallback = errorCallback;
+    hookedObj.tmp_options = options;
+    waitGetCurrentPosition();
+  };
+  Object.getPrototypeOf(navigator.geolocation).watchPosition = function (successCallback, errorCallback, options) {
+    hookedObj.tmp2_successCallback = successCallback;
+    hookedObj.tmp2_errorCallback = errorCallback;
+    hookedObj.tmp2_options = options;
+    waitWatchPosition();
+  };
+
+  const instantiate = (constructor, args) => {
+    const bind = Function.bind;
+    const unbind = bind.bind(bind);
+    return new (unbind(constructor, null).apply(null, args));
+  }
+
+  Blob = function (_Blob) {
+    function secureBlob(...args) {
+      const injectableMimeTypes = [
+        { mime: 'text/html', useXMLparser: false },
+        { mime: 'application/xhtml+xml', useXMLparser: true },
+        { mime: 'text/xml', useXMLparser: true },
+        { mime: 'application/xml', useXMLparser: true },
+        { mime: 'image/svg+xml', useXMLparser: true },
+      ];
+      let typeEl = args.find(arg => (typeof arg === 'object') && (typeof arg.type === 'string') && (arg.type));
+
+      if (typeof typeEl !== 'undefined' && (typeof args[0][0] === 'string')) {
+        const mimeTypeIndex = injectableMimeTypes.findIndex(mimeType => mimeType.mime.toLowerCase() === typeEl.type.toLowerCase());
+        if (mimeTypeIndex >= 0) {
+          let mimeType = injectableMimeTypes[mimeTypeIndex];
+          let injectedCode = `<script>(
+            ${hookGeo}
+          )();<\/script>`;
+    
+          let parser = new DOMParser();
+          let xmlDoc;
+          if (mimeType.useXMLparser === true) {
+            xmlDoc = parser.parseFromString(args[0].join(''), mimeType.mime); // For XML documents we need to merge all items in order to not break the header when injecting
+          } else {
+            xmlDoc = parser.parseFromString(args[0][0], mimeType.mime);
+          }
+
+          if (xmlDoc.getElementsByTagName("parsererror").length === 0) { // if no errors were found while parsing...
+            xmlDoc.documentElement.insertAdjacentHTML('afterbegin', injectedCode);
+    
+            if (mimeType.useXMLparser === true) {
+              args[0] = [new XMLSerializer().serializeToString(xmlDoc)];
+            } else {
+              args[0][0] = xmlDoc.documentElement.outerHTML;
+            }
+          }
+        }
+      }
+
+      return instantiate(_Blob, args); // arguments?
+    }
+
+    // Copy props and methods
+    let propNames = Object.getOwnPropertyNames(_Blob);
+    for (let i = 0; i < propNames.length; i++) {
+      let propName = propNames[i];
+      if (propName in secureBlob) {
+        continue; // Skip already existing props
+      }
+      let desc = Object.getOwnPropertyDescriptor(_Blob, propName);
+      Object.defineProperty(secureBlob, propName, desc);
+    }
+
+    secureBlob.prototype = _Blob.prototype;
+    return secureBlob;
+  }(Blob);
+
+  window.addEventListener('message', function (event) {
+    if (event.source !== window) {
+      return;
+    }
+    const message = event.data;
+    switch (message.method) {
+      case 'updateLocation':
+        if ((typeof message.info === 'object') && (typeof message.info.coords === 'object')) {
+          hookedObj.genLat = message.info.coords.lat;
+          hookedObj.genLon = message.info.coords.lon;
+          hookedObj.fakeGeo = message.info.fakeIt;
+        }
+        break;
+      default:
+        break;
+    }
+  }, false);
+  //]]>
+}
+          )();</script>
+<g transform="translate(960,440) scale(1,1) translate(-960,-440)"><linearGradient id="lg-0.0673160629530114" x1="0" x2="1" y1="0" y2="0">
+  <stop stop-color="#95afd2" offset="0"/>
+  <stop stop-color="#9cdedf" offset="1"/>
+</linearGradient><path d="" fill="url(#lg-0.0673160629530114)" opacity="0.4">
+  <animate attributeName="d" dur="20s" repeatCount="indefinite" keyTimes="0;0.333;0.667;1" calcmod="spline" keySplines="0.2 0 0.2 1;0.2 0 0.2 1;0.2 0 0.2 1" begin="0s" values="M0 0M 0 642.4861101455501Q 192 653.2154581411008 384 646.6588112280782T 768 556.4567102914176T 1152 622.4245239832911T 1536 618.9316081174271T 1920 614.964120186082L 1920 360.9853672901759Q 1728 280.2771293714817 1536 273.49768892508774T 1152 238.4590786889984T 768 291.25811892465674T 384 253.21866923997374T 0 225.6821704265884Z;M0 0M 0 586.5896601989872Q 192 583.5033981986617 384 579.9414856749597T 768 613.4624978079263T 1152 576.388034605309T 1536 625.9843602203076T 1920 599.1943155744075L 1920 285.65400596226493Q 1728 302.76705799352504 1536 301.37323430984674T 1152 219.0290029167177T 768 273.8972271361462T 384 221.3640621255816T 0 224.7451751157413Z;M0 0M 0 701.6574608420767Q 192 660.2594150949662 384 659.0541000959493T 768 601.346484949422T 1152 623.4871255158403T 1536 612.1275447893743T 1920 623.978455625077L 1920 367.1888371509332Q 1728 364.0826695603299 1536 355.1363934872257T 1152 243.82644718410418T 768 209.96814513173933T 384 305.48274528756957T 0 295.73545263331937Z;M0 0M 0 642.4861101455501Q 192 653.2154581411008 384 646.6588112280782T 768 556.4567102914176T 1152 622.4245239832911T 1536 618.9316081174271T 1920 614.964120186082L 1920 360.9853672901759Q 1728 280.2771293714817 1536 273.49768892508774T 1152 238.4590786889984T 768 291.25811892465674T 384 253.21866923997374T 0 225.6821704265884Z"/>
+</path><path d="" fill="url(#lg-0.0673160629530114)" opacity="0.4">
+  <animate attributeName="d" dur="20s" repeatCount="indefinite" keyTimes="0;0.333;0.667;1" calcmod="spline" keySplines="0.2 0 0.2 1;0.2 0 0.2 1;0.2 0 0.2 1" begin="-5s" values="M0 0M 0 623.2642656768649Q 192 638.8298547754417 384 637.6417885148471T 768 558.8866316625785T 1152 599.6305699277472T 1536 655.9546943012149T 1920 608.2010648437397L 1920 376.7612164620766Q 1728 348.2912861605132 1536 347.71238238838276T 1152 221.81650001489018T 768 247.66672557985115T 384 190.8683790748923T 0 277.73381857445423Z;M0 0M 0 647.735037314992Q 192 658.0640903261676 384 648.4913400144108T 768 630.941601006706T 1152 551.5336437021122T 1536 612.830781213167T 1920 589.82660489361L 1920 322.71924706217044Q 1728 307.6038978087382 1536 301.46696081918157T 1152 229.2694672828464T 768 242.14270405351553T 384 264.97248165053094T 0 226.62775180674112Z;M0 0M 0 613.7511179883278Q 192 579.0489691826373 384 577.6306084387509T 768 632.507772113287T 1152 583.73948218768T 1536 559.7182759427587T 1920 580.5627531488105L 1920 257.24597896118223Q 1728 368.2014229298882 1536 361.5648428004671T 1152 265.492759909141T 768 239.1577732859283T 384 214.109865859087T 0 223.1937951033678Z;M0 0M 0 623.2642656768649Q 192 638.8298547754417 384 637.6417885148471T 768 558.8866316625785T 1152 599.6305699277472T 1536 655.9546943012149T 1920 608.2010648437397L 1920 376.7612164620766Q 1728 348.2912861605132 1536 347.71238238838276T 1152 221.81650001489018T 768 247.66672557985115T 384 190.8683790748923T 0 277.73381857445423Z"/>
+</path><path d="" fill="url(#lg-0.0673160629530114)" opacity="0.4">
+  <animate attributeName="d" dur="20s" repeatCount="indefinite" keyTimes="0;0.333;0.667;1" calcmod="spline" keySplines="0.2 0 0.2 1;0.2 0 0.2 1;0.2 0 0.2 1" begin="-10s" values="M0 0M 0 697.3535225227953Q 192 674.3907750504269 384 667.9408039702164T 768 609.9189755311431T 1152 580.2573461475986T 1536 649.0402375667204T 1920 549.5068803770364L 1920 365.7938093511261Q 1728 356.75937925094155 1536 348.8593768564014T 1152 314.96715834879467T 768 248.96436836225965T 384 313.48522259085723T 0 213.46756953800752Z;M0 0M 0 578.6872040519096Q 192 684.0250749276344 384 678.3486142581808T 768 574.0984046737524T 1152 551.7898765439844T 1536 554.441496586255T 1920 621.7205564064084L 1920 359.3448412448805Q 1728 237.284777628851 1536 233.90048543366385T 1152 253.55115464103724T 768 210.74523218675625T 384 285.05515421843745T 0 264.04186437095035Z;M0 0M 0 609.3298103630013Q 192 680.5014102842314 384 677.1693816978793T 768 637.8470119873568T 1152 558.3603600004092T 1536 574.4480093226812T 1920 575.6838760373721L 1920 302.808672986713Q 1728 246.49623990281037 1536 241.99009986587376T 1152 290.52730391634066T 768 306.47498527825996T 384 323.2267508651611T 0 227.82490901551893Z;M0 0M 0 697.3535225227953Q 192 674.3907750504269 384 667.9408039702164T 768 609.9189755311431T 1152 580.2573461475986T 1536 649.0402375667204T 1920 549.5068803770364L 1920 365.7938093511261Q 1728 356.75937925094155 1536 348.8593768564014T 1152 314.96715834879467T 768 248.96436836225965T 384 313.48522259085723T 0 213.46756953800752Z"/>
+</path><path d="" fill="url(#lg-0.0673160629530114)" opacity="0.4">
+  <animate attributeName="d" dur="20s" repeatCount="indefinite" keyTimes="0;0.333;0.667;1" calcmod="spline" keySplines="0.2 0 0.2 1;0.2 0 0.2 1;0.2 0 0.2 1" begin="-15s" values="M0 0M 0 683.0967839179316Q 192 587.7416117721023 384 586.3479759153169T 768 607.8984186046574T 1152 671.8004271847357T 1536 523.7974571088889T 1920 605.1832234565107L 1920 284.8898746514394Q 1728 249.11041406471182 1536 247.13782857344893T 1152 331.3259100361882T 768 323.676174398681T 384 206.03068790427045T 0 242.65962839687552Z;M0 0M 0 697.1244741818354Q 192 596.8058301372836 384 589.5646047227827T 768 640.8422958421422T 1152 652.8604627714825T 1536 521.0111970083943T 1920 609.8340993477378L 1920 353.7493642049583Q 1728 271.91737463802974 1536 266.03918336542046T 1152 278.4467862630839T 768 320.8741364420654T 384 331.97526198001924T 0 252.73991201319012Z;M0 0M 0 689.2260626472569Q 192 588.2266511564585 384 579.4991112657585T 768 552.2914258150619T 1152 610.9085172990157T 1536 564.9094334412457T 1920 607.8797248059312L 1920 357.8887071951937Q 1728 241.80100653261363 1536 241.1812137442257T 1152 331.05292645254076T 768 339.550799570333T 384 252.0658411678976T 0 243.4748586061246Z;M0 0M 0 683.0967839179316Q 192 587.7416117721023 384 586.3479759153169T 768 607.8984186046574T 1152 671.8004271847357T 1536 523.7974571088889T 1920 605.1832234565107L 1920 284.8898746514394Q 1728 249.11041406471182 1536 247.13782857344893T 1152 331.3259100361882T 768 323.676174398681T 384 206.03068790427045T 0 242.65962839687552Z"/>
+</path></g>
+</svg>
