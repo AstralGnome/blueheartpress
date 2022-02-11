@@ -1,7 +1,7 @@
 {
   "name": "blueheartpress",
   "version": "0.1.0",
-  "homepage": " https://blueheartpress.com/",
+  "homepage": "https://blueheartpress",
   "private": true,
   "dependencies": {
     "animate.css": "^4.1.1",
