@@ -1,4 +1,5 @@
 import React from 'react';
+import Navbar from '../components/Navbar';
 import Wrapper from '../components/Wrapper';
 import "../style/Home.scss"
 // import HeartImage from "../assets/HeartOutline2.png" 
@@ -7,10 +8,12 @@ import "../style/Home.scss"
 function Home () {
   return (
     <div className ="HomeStyle">
+        <Navbar>
       <Wrapper>
         <div className="Home">
         </div>
       </Wrapper>
+        </Navbar>
     </div>
   )
 }
