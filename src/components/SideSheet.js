@@ -1,9 +1,9 @@
 import { Paragraph, SideSheet, Position, Pane, Card, Tablist, Tab, Heading } from 'evergreen-ui';
 import React from 'react';
-import "../style/Slider.scss"
+import "../style/Slider.css"
 import {BsFillInfoCircleFill} from "react-icons/bs"
 import "animate.css"
-import "../style/SideSheet.scss"
+import "../style/SideSheet.css"
 
 function SideSheetComponent() {
 const [selectedIndex, setSelectedIndex] = React.useState(0)

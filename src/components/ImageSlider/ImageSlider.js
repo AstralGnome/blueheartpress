@@ -1,6 +1,6 @@
 import React from 'react';
-import "../../style/ComicPages.scss"
-import "../../style/Slider.scss"
+import "../../style/ComicPages.css"
+import "../../style/Slider.css"
 import {SliderData} from "./SliderData.js"
 import { useState } from 'react/cjs/react.development';
 import {FaArrowAltCircleRight, FaArrowAltCircleLeft} from "react-icons/fa";

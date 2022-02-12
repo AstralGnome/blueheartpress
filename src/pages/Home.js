@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import Wrapper from '../components/Wrapper';
-import "../style/Home.scss"
+import "../style/Home.css"
 // import HeartImage from "../assets/HeartOutline2.png" 
 
 

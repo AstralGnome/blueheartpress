@@ -2,7 +2,7 @@ import { EditIcon, HandIcon, HomeIcon, IconButton, InfoSignIcon, Menu, MenuIcon,
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { position } from 'ui-box';
-import "../style/Navbar.scss"
+import "../style/Navbar.css"
 
 function Navbar() {
   return (

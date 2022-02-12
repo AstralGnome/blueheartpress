@@ -1,5 +1,5 @@
 import React, {useReducer} from "react"
-import "../style/Counter.scss"
+import "../style/Counter.css"
 
 function reducer(state, action) {
   switch (action.type) {
