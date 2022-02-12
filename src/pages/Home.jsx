@@ -1,7 +1,7 @@
 import React from 'react';
 import Wrapper from '../components/Wrapper';
 import "../style/Home.scss"
-// import HeartImage from "../assets/HeartOutline2.png"
+// import HeartImage from "../assets/HeartOutline2.png" 
 
 
 function Home () {
