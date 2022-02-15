@@ -6,14 +6,14 @@ import AboutYou from "./pages/AboutYou";
 import About from "./pages/About";  
 import ErrorPage from "./pages/ErrorPage";
 import Profile from "./pages/Profile";
-import Navbar from "./components/Navbar";
+// import Navbar from "./components/Navbar";
 import Comic from "./pages/Comic";
 import Home from "./pages/Home";
 
 function App() {
   return (
       <Router>
-        <Navbar/>
+        {/* <Navbar/> */}
           <Routes>
             <Route path="/" element={<Home/>}/>
             <Route path="/user" element={<Comic/>}/>
