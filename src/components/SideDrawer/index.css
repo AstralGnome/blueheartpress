@@ -1,0 +1,7 @@
+[data-theme='compact'] .ant-drawer-body p {
+  width: 100%;
+  height: 100%;
+  color: white;
+  background-color: white;
+  font-size: 72px;
+}

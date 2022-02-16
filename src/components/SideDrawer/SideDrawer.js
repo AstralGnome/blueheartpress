@@ -1,9 +1,11 @@
-import React from 'react'
-
+import "./index.css"
 function SideDrawer() {
+
   return (
-    <div>SideDrawer</div>
-  )
+    <>
+
+    </>
+  );
 }
 
 export default SideDrawer

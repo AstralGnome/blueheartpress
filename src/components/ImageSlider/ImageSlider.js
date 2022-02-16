@@ -6,8 +6,7 @@ import { useState } from 'react/cjs/react.development';
 import {FaArrowAltCircleRight, FaArrowAltCircleLeft} from "react-icons/fa";
 import {ImZoomIn, ImZoomOut} from "react-icons/im"
 import "animate.css";
-// import SideSheetComponent from '../SideSheet';
-
+import SideDrawer from "../SideDrawer/SideDrawer"
 const ImageSlider = ({slides}) => {
 const [current, setCurrent] = useState(0);
 const [currentToggle, setToggle] = useState(true);
@@ -35,7 +34,7 @@ if (!Array.isArray(slides) || slides.length <= 0) {
   return (
     <>
     <div className="ToggleParent">
-      {/* <SideSheetComponent/> */}
+      <SideDrawer/>
       {currentToggle === true ? <ImZoomIn className="Toggler" onClick={Toggler} /> : <ImZoomOut className="Toggler" onClick={Toggler}/>}
     </div>
     <div className="PageControlCenter">
