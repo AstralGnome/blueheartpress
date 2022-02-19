@@ -19,21 +19,22 @@ const darkTheme = createTheme({
 
 function App() {
   return (
-    <ThemeProvider theme={darkTheme}>
-  <Router>
-    {/* <Navbar/> */}
-      <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/user" element={<Comic/>}/>
-        <Route path="/contact" element={<Contact/>}/>
-        <Route path="/about" element={<About/>} component={About}/>
-        <Route path="/about/me" element={<AboutMe/>}/>
-        <Route path="/about/you" element={<AboutYou/>}/>
-        <Route path="/profile" element={<Profile/>}/>
-        <Route path="/profile/:username" element={<Profile/>}/>
-        <Route path="*" element={<ErrorPage/>}/>
-      </Routes>
-  </Router></ThemeProvider>
+  <ThemeProvider theme={darkTheme}>
+    <Router>
+      {/* <Navbar/> */}
+        <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/user" element={<Comic/>}/>
+          <Route path="/contact" element={<Contact/>}/>
+          <Route path="/about" element={<About/>} component={About}/>
+          <Route path="/about/me" element={<AboutMe/>}/>
+          <Route path="/about/you" element={<AboutYou/>}/>
+          <Route path="/profile" element={<Profile/>}/>
+          <Route path="/profile/:username" element={<Profile/>}/>
+          <Route path="*" element={<ErrorPage/>}/>
+        </Routes>
+    </Router>
+  </ThemeProvider>
   );
 }
 
