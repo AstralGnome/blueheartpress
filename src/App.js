@@ -10,6 +10,7 @@ import Navbar from "./components/Navbar";
 import Comic from "./pages/Comic";
 import Home from "./pages/Home";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import ImageSlider from "./components/ImageSlider/ImageSlider";
 
 const darkTheme = createTheme({
   palette: {
@@ -22,6 +23,7 @@ function App() {
   <ThemeProvider theme={darkTheme}>
     <Router>
       <Navbar/>
+        <img src="../Images/Banner.jpg" alt="experiment"/>
         <Routes>
           <Route path="/" element={<Home/>}/>
           <Route path="/user" element={<Comic/>}/>
