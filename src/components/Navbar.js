@@ -19,6 +19,7 @@ import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import "../style/Navbar.css"
 import { MdMenu } from "react-icons/md";
+import { Link } from 'react-router-dom';
 
 export default function Navbar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -102,12 +103,14 @@ export default function Navbar() {
           </ListItemIcon>
           Settings
         </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
+        <Link className="LinkText" to="/user">
+          <MenuItem>
+            <ListItemIcon>
             <Logout fontSize="small" />
-          </ListItemIcon>
-          Logout
-        </MenuItem>
+            </ListItemIcon>
+            Logout
+          </MenuItem>
+        </Link>
       </Menu>
     </React.Fragment>
   );
