@@ -84,33 +84,34 @@ export default function Navbar() {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem>
+      {/* Rather than wrapping the menu Item in React Router Dom Link I took a shortcut and used the component property in MUI's MenuItem. Hope that doesn't cause any routing issues; if it does I should try and remember to come back and check these links first! */}
+          <MenuItem component={Link} to={"/user"}>
           <Avatar /> Profile
-        </MenuItem>
-        <MenuItem>
+          </MenuItem>
+          <MenuItem component={Link} to={"/"}>
           <Avatar /> My account
         </MenuItem>
         <Divider />
-        <MenuItem>
+        <MenuItem component={Link} to={"/user"}>
           <ListItemIcon>
             <PersonAdd fontSize="small" />
           </ListItemIcon>
           Add another account
         </MenuItem>
-        <MenuItem>
+        <MenuItem component={Link} to={"/user"}>
           <ListItemIcon>
             <Settings fontSize="small" />
           </ListItemIcon>
           Settings
         </MenuItem>
-        <Link className="LinkText" to="/user">
-          <MenuItem>
+        {/* <Link className="LinkText" to="/user"> */}
+          <MenuItem component={Link} to={"/user"}>
             <ListItemIcon>
             <Logout fontSize="small" />
             </ListItemIcon>
-            Logout
+            User
           </MenuItem>
-        </Link>
+        {/* </Link> */}
       </Menu>
     </React.Fragment>
   );
