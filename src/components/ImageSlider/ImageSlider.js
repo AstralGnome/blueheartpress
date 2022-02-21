@@ -2,7 +2,7 @@ import React from 'react';
 import "../../style/ComicPages.css"
 import "../../style/Slider.css"
 import {SliderData} from "./SliderData.js"
-import { useState } from 'react/cjs/react.development';
+import { useState } from 'react';
 import {FaArrowAltCircleRight, FaArrowAltCircleLeft} from "react-icons/fa";
 import {ImZoomIn, ImZoomOut} from "react-icons/im"
 import "animate.css";
