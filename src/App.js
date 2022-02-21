@@ -24,8 +24,6 @@ function App() {
   <ThemeProvider theme={darkTheme}>
     <Router>
       <Navbar/>
-      <ImageSlider slides={SliderData}/>
-
         <Routes>
           <Route path="/" element={<Home/>}/>
           <Route path="/user" element={<Comic/>}/>
