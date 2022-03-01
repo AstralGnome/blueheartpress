@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
-import Box from '@mui/material/Box';
+import Box from '@mui/material/Box';   
+import Typography from '@mui/material/Typography';   
 import Drawer from '@mui/material/Drawer';
 import {BsFillInfoCircleFill} from "react-icons/bs"
 import BasicTabs from '../TabPanel';
@@ -18,6 +19,8 @@ export default function SideDrawer() {
       onClick={toggleDrawer(true)}
       onKeyDown={toggleDrawer(true)}
     >
+    <Typography variant="h6" sx={{marginTop: 1, marginLeft: 2}}>Strange Assassins</Typography>
+    <Typography variant="subtitle1" sx={{ marginLeft: 2}}>by Keenan Reed and Eugenio Belgrado</Typography>
       <BasicTabs/>
     </Box>
   );
