@@ -5,10 +5,9 @@ import "../style/Home.css"
 function Home () {
 
   return (
-    <div className ="HomeStyle">
+    <div>
       <Wrapper>
-        <div className="Home">
-        </div>
+          <img className="HomePage" src="../Images/HomePage.png" alt="Scrunched up piece of paper with Blue Heart Press written on it."/>
       </Wrapper>
     </div>
   )
