@@ -7,6 +7,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
+import HomeIcon from '@mui/icons-material/Home';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -85,11 +86,11 @@ export default function Navbar() {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
       {/* Rather than wrapping the menu Item in React Router Dom Link I took a shortcut and used the component property in MUI's MenuItem. Hope that doesn't cause any routing issues; if it does I should try and remember to come back and check these links first! */}
-          <MenuItem component={Link} to={"/user"}>
+        <MenuItem component={Link} to={"/"}>
+          <HomeIcon sx={{paddingRight: "10px"}}/> Home
+        </MenuItem>
+        <MenuItem component={Link} to={"/user"}>
           <Avatar /> Profile
-          </MenuItem>
-          <MenuItem component={Link} to={"/"}>
-          <Avatar /> My account
         </MenuItem>
         <Divider />
         <MenuItem component={Link} to={"/user"}>
