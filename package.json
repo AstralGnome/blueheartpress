@@ -1,8 +1,9 @@
 {
   "name": "blueheartpress",
   "version": "0.1.0",
-  "homepage": "https://blueheartpress",
   "private": true,
+  "proxy": "http://localhost:5000",
+  "homepage": "https://blueheartpress",
   "dependencies": {
     "@emotion/react": "^11.8.1",
     "@emotion/styled": "^11.8.1",
@@ -11,6 +12,10 @@
     "@mui/material": "^5.4.2",
     "@mui/styled-engine-sc": "^5.4.2",
     "animate.css": "^4.1.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "mssql": "^8.0.2",
+    "nodemon": "^2.0.15",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
@@ -21,6 +26,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "server": "nodemon server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

@@ -90,29 +90,29 @@ export default function Navbar() {
           <HomeIcon sx={{paddingRight: "10px"}}/> Home
         </MenuItem>
         <MenuItem component={Link} to={"/user"}>
-          <Avatar /> Profile
+          <Avatar /> Log In
         </MenuItem>
         <Divider />
         <MenuItem component={Link} to={"/user"}>
           <ListItemIcon>
             <PersonAdd fontSize="small" />
           </ListItemIcon>
-          Add another account
-        </MenuItem>
-        <MenuItem component={Link} to={"/user"}>
-          <ListItemIcon>
-            <Settings fontSize="small" />
-          </ListItemIcon>
-          Settings
+          Create Account
         </MenuItem>
         {/* <Link className="LinkText" to="/user"> */}
           <MenuItem component={Link} to={"/user"}>
             <ListItemIcon>
             <Logout fontSize="small" />
             </ListItemIcon>
-            User
+            Browse
           </MenuItem>
         {/* </Link> */}
+        <MenuItem component={Link} to={"/user"}>
+          <ListItemIcon>
+            <Settings fontSize="small" />
+          </ListItemIcon>
+          Settings
+        </MenuItem>
       </Menu>
     </React.Fragment>
   );
