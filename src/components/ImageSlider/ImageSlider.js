@@ -33,6 +33,7 @@ if (!Array.isArray(slides) || slides.length <= 0) {
 
   return (
     <>
+    <div className="Z">
     <div className="ToggleParent">
       <SideDrawer/>
       {currentToggle === true ? <ImZoomIn className="Toggler" onClick={Toggler} /> : <ImZoomOut className="Toggler" onClick={Toggler}/>}
@@ -53,6 +54,7 @@ if (!Array.isArray(slides) || slides.length <= 0) {
       })}
       
     </section>
+    </div>
     </>
   )
 };

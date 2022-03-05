@@ -4,7 +4,7 @@ function Banner () {
   return (
     
     <div className="BGI">
-      <div className="BannerBackground"></div>
+      {/* <div className="BannerBackground"></div> */}
     </div>
     
   )
