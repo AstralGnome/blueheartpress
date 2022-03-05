@@ -11,7 +11,7 @@ const getEmployees = async() => {
   catch(error) {
     console.log(error);
   }
-}
+};
 
 module.exports = {
   getEmployees

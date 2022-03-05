@@ -1,9 +1,11 @@
-import "../style/Banner.css"
+import "../style/SVGBackground.css"
 
 function Banner () {
   return (
     
-      <div className="BGI"><div className="BannerBackground"></div></div>
+    <div className="BGI">
+      {/* <div className="BannerBackground"></div> */}
+    </div>
     
   )
 }

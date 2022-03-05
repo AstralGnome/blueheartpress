@@ -1,3 +1,4 @@
+import { Box } from '@mui/material';
 import React from 'react';
 import Banner from '../components/Banner';
 import ImageSlider from '../components/ImageSlider/ImageSlider';
@@ -8,12 +9,12 @@ import "../style/Comic.css"
 
 function Comic() {
   return (
-    <div className = "Comic">
+    <Box className = "SVG">
       <Wrapper>
         <Banner/>
         <ImageSlider slides={SliderData}/>
       </Wrapper>
-    </div>
+    </Box>
   )
 }
 

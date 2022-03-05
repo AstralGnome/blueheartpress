@@ -1,5 +1,5 @@
-const express       = require('express'),
-      dbOperation   = require('./dbfiles/dbOperation'),
+const dbOperation   = require('./dbfiles/dbOperation'),
+      express       = require('express'),
       cors          = require('cors');
 
 // const API_PORT = process.env.PORT || 5000;

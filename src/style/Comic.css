@@ -1,5 +1,6 @@
-.Comic {
-  height: 100%;
+.SVG {
+  height: 100vmin;
+  width: 100vmax;
   margin: 0;
   background-size: cover;
   background: url("../assets/Video/Valley-20s-1920px.svg");

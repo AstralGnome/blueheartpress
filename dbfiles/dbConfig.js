@@ -1,6 +1,6 @@
 const config = {
-  user: 'BlueHeartPressUser ',
-  password: 'hit',
+  user: 'AstralGnome',
+  password: 'foo',
   server: 'DESKTOP-SLHKHB3',
   database: "BlueHeartdb",
   options: {
