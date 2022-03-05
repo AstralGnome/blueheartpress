@@ -1,8 +1,5 @@
 .SVG {
-  height: 140vmin;
-  width: 140vmax;
-  margin: 0;
-  background-repeat: no-repeat;
   background: url("../assets/Video/Valley-20s-1920px.svg");
+  background-size: contain;
 }
 
