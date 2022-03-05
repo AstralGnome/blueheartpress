@@ -2,7 +2,7 @@
   height: 100vmin;
   width: 100vmax;
   margin: 0;
-  background-size: cover;
+  background-repeat: no-repeat;
   background: url("../assets/Video/Valley-20s-1920px.svg");
 }
 
