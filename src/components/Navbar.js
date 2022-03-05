@@ -37,17 +37,17 @@ export default function Navbar() {
         <Typography sx={{ minWidth: 100 }}>Contact</Typography>
         <Typography sx={{ minWidth: 100 }}>Profile</Typography>
         <Tooltip title="Account settings">
-          <IconButton
-            className="Navbar" 
-            onClick={handleClick}
-            size="small"
-            sx={{ ml: 2 }}
-            aria-controls={open ? 'account-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-          >
-            <Avatar className="MenuIcon" sx={{ width: 32, height: 32 }}><MdMenu className="MenuIcon" /></Avatar>
-          </IconButton>
+            <IconButton
+              className="Navbar" 
+              onClick={handleClick}
+              size="small"
+              sx={{ ml: 2 }}
+              aria-controls={open ? 'account-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? 'true' : undefined}
+            >
+              <Avatar className="MenuIcon" sx={{ width: 32, height: 32 }}><MdMenu className="MenuIcon" /></Avatar>
+            </IconButton>
         </Tooltip>
       </Box>
       <Menu
