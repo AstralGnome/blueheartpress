@@ -1,5 +1,5 @@
 .SVG {
   background: url("../assets/Video/Valley-20s-1920px.svg");
-  background-size: contain;
+  background-size: cover;
 }
 
