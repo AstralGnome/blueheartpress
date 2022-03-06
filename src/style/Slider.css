@@ -16,7 +16,6 @@
   color: rgb(77, 90, 209);
   opacity: 90%;
   border-radius: 50%;
-  box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, .5);
 }
 .LeftArrow {
   margin-right: 40px;
@@ -28,8 +27,6 @@
   color: rgb(77, 90, 209);
   opacity: 90%;
   border-radius: 50%;
-  box-shadow: -1px 1px 3px 1px rgba(0, 0, 0, .5);
-  
 }
 
 .LeftArrow:hover, .RightArrow:hover, .Toggler:hover, .SideSheetButton:hover {
