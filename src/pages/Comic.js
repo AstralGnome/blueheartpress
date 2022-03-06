@@ -8,7 +8,7 @@ import "../style/Comic.css"
 
 function Comic() {
   return (
-    <div className = "SVG">
+    <div class = "SVG">
       <Wrapper>
         <Banner/>
         <ImageSlider slides={SliderData}/>

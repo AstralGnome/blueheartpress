@@ -13,9 +13,8 @@
   z-index: 10;
   cursor: pointer;
   user-select: none;
-  color: darkblue;
+  color: rgb(77, 90, 209);
   opacity: 90%;
-  /* border: 1px solid rgb(218, 218, 218); */
   border-radius: 50%;
   box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, .5);
 }
@@ -26,7 +25,7 @@
   z-index: 10;
   cursor: pointer;
   user-select: none;
-  color: darkblue;
+  color: rgb(77, 90, 209);
   opacity: 90%;
   border-radius: 50%;
   box-shadow: -1px 1px 3px 1px rgba(0, 0, 0, .5);
@@ -35,7 +34,7 @@
 
 .LeftArrow:hover, .RightArrow:hover, .Toggler:hover, .SideSheetButton:hover {
   opacity: 85%;
-  color: rgb(65, 105, 214);
+  color: rgb(106, 145, 252);
 }
 
 .LeftArrow:active , .RightArrow:active, .Toggler:active, .SideSheetButton:active {
