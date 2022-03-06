@@ -1,5 +1,7 @@
 .SVG {
-  background: url("../assets/Video/Valley-20s-1920px.svg");
+  background: url("../assets/Video/Valley-20s-1920px.svg") repeat fixed 100%;
   background-size: cover;
+  background-attachment: fixed;
+  
 }
 
