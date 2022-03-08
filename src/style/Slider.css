@@ -14,7 +14,7 @@
   cursor: pointer;
   user-select: none;
   color: rgb(77, 90, 209);
-  opacity: 90%;
+  opacity: 95%;
   border-radius: 50%;
 }
 .LeftArrow {
@@ -25,13 +25,13 @@
   cursor: pointer;
   user-select: none;
   color: rgb(77, 90, 209);
-  opacity: 90%;
+  opacity: 95%;
   border-radius: 50%;
 }
 
 .LeftArrow:hover, .RightArrow:hover, .Toggler:hover, .SideSheetButton:hover {
-  opacity: 85%;
-  color: rgb(106, 145, 252);
+  opacity: 95%;
+  color: rgb(66, 80, 212);
 }
 
 .LeftArrow:active , .RightArrow:active, .Toggler:active, .SideSheetButton:active {
