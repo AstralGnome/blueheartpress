@@ -1,15 +1,10 @@
-const config = {
-  user: 'AstralGnome',
-  password: 'foo',
-  server: 'DESKTOP-SLHKHB3',
-  database: "BlueHeartdb",
-  options: {
-    trustServerCertificate: true,
-    trustedConnection: false,
-    enableArithAbort: true,
-    instancename: "SQLEXPRESS"
-  },
-  port: 1433
-}
+const mysql = require('mysql');
 
-module.exports = config;
+const connection = mysql.createConnection ({
+  host: 'localhost',
+  database: 'burgers_db',
+  user: 'root',
+  password: '17Heartblue44!'
+})
+
+module.exports = connection;

@@ -1,26 +1,21 @@
-const dbOperation   = require('./dbfiles/dbOperation'),
-      express       = require('express'),
-      cors          = require('cors');
+const express       = require('express');
+const app           = express();
+const connection    = require('./dbfiles/dbConfig');
 
-// const API_PORT = process.env.PORT || 5000;
-// const app = express();
+app.get('/', function(req,res) {
+  let sql = "SELECT * FROM BURGERS_DB"
+  connection.query(sql, function(err, results) {
+    if (err) throw err;
+    res.send(results);
+  })
+  console.log('Called');
+  res.send('Hellooooo');
+});
 
-
-// app.use(cors());
-
-// app.get('/api', function(req,res) {
-//   console.log('Called');
-//   res.send({result:'Hellooooo'})
-// })
-
-// app.get('/quit', function(req,res) {
-//   console.log('Called quit');
-//   res.send({result:'Goodbye'})
-// })
-
-dbOperation.getEmployees().then(res => {
-  console.log(res)
-})
-
-
-// app.listen(API_PORT, () => console.log(`Listening on port ${API_PORT}`));
+app.listen(3001, function() {
+  console.log('App listening on PoRtt 3000')
+  connection.connect(function(err){
+    if(err) throw err;
+    console.log('Database Connected!')
+  })
+});
