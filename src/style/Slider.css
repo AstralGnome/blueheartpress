@@ -6,11 +6,15 @@
   align-items: center;
   padding-bottom: 100px;
 }
+
+.SliderBack {
+  height: 80vmin;
+}
+
 .RightArrow {
   margin-left: 40px;
   top: 175px;
   font-size: 3rem;
-  z-index: 10;
   cursor: pointer;
   user-select: none;
   color: rgb(77, 90, 209);
@@ -21,7 +25,6 @@
   margin-right: 40px;
   top: 175px;
   font-size: 3rem;
-  z-index: 10;
   cursor: pointer;
   user-select: none;
   color: rgb(77, 90, 209);
@@ -76,7 +79,6 @@
   top: 175px;
   color: rgb(77, 90, 209);
   opacity: 70%;
-  z-index: 10;
   cursor: pointer;
   user-select: none;
   box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, .5);
@@ -99,7 +101,6 @@
   top: 175px;
   color: rgb(77, 90, 209);
   opacity: 70%;
-  z-index: 10;
   cursor: pointer;
   user-select: none;
   box-shadow: -1px 1px 4px 1px rgba(0, 0, 0, .5);

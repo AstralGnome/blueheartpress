@@ -44,6 +44,7 @@ if (!Array.isArray(slides) || slides.length <= 0) {
       <FaArrowAltCircleRight className="RightArrow" onClick={nextSlide}/>
     </div>
     <section className="Slider">
+      <div className="SliderBack"></div>
       {SliderData.map((slide, index) => {
         return (
           
