@@ -4,7 +4,7 @@
   display: flex;
   justify-content:center;
   align-items: center;
-  /* padding-bottom: 15px; */
+  padding-bottom: 100px;
 }
 .RightArrow {
   margin-left: 40px;
@@ -30,8 +30,8 @@
 }
 
 .LeftArrow:hover, .RightArrow:hover, .Toggler:hover, .SideSheetButton:hover {
-  opacity: 95%;
-  color: rgb(66, 80, 212);
+  opacity: 85%;
+  color: rgb(52, 68, 214);
 }
 
 .LeftArrow:active , .RightArrow:active, .Toggler:active, .SideSheetButton:active {
@@ -74,11 +74,11 @@
   background-color: azure;
   font-size: 1.5rem;
   top: 175px;
-  color: darkblue;
+  color: rgb(77, 90, 209);
+  opacity: 70%;
   z-index: 10;
   cursor: pointer;
   user-select: none;
-  opacity: 50%;
   box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, .5);
 
 }
@@ -97,11 +97,11 @@
   background-color: azure;
   font-size: 1.5rem;
   top: 175px;
-  color: darkblue;
+  color: rgb(77, 90, 209);
+  opacity: 70%;
   z-index: 10;
   cursor: pointer;
   user-select: none;
-  opacity: 50%;
   box-shadow: -1px 1px 4px 1px rgba(0, 0, 0, .5);
 
 }
