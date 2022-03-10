@@ -51,6 +51,7 @@ export default function Navbar() {
         {/* </Tooltip> */}
       </Box>
       <Menu
+        disableScrollLock={true}
         anchorEl={anchorEl}
         id="account-menu"
         open={open}

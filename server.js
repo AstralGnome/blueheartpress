@@ -7,7 +7,7 @@ app.get('/', function(req,res) {
   connection.query(sql, function(err, results) {
     if (err) throw err;
     res.send(results);
-    console.log(results)
+    console.log("results")
   })
   console.log('Called');
   res.send('Hellooooo');
