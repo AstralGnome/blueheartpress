@@ -1,11 +1,18 @@
 {
   "cSpell.words": [
+    "addcomment",
     "antd",
     "blueheartpress",
+    "createcommentsstable",
+    "createcommentstable",
     "dbfiles",
+    "deletecomment",
+    "getcomment",
+    "getcomments",
     "Hellooooo",
     "labelledby",
     "Tablist",
-    "tabpanel"
+    "tabpanel",
+    "updatecomment"
   ]
 }
