@@ -85,10 +85,10 @@ export default function Navbar() {
           <HomeIcon sx={{paddingRight: "10px"}}/> Home
         </MenuItem>
         <MenuItem component={Link} to={"/user"}>
-          <Avatar /> Log In
+          <Avatar /> Experience
         </MenuItem>
         <Divider />
-        <MenuItem component={Link} to={"/user"}>
+        <MenuItem component={Link} to={"/login"}>
           <ListItemIcon>
             <PersonAdd fontSize="small" />
           </ListItemIcon>
