@@ -1,6 +1,6 @@
 import React from 'react';
-import Wrapper from '../components/Wrapper';
-import "../style/Contact.css"
+import Wrapper from '../../components/Wrapper/Wrapper';
+import "../Contact/Contact.css"
 
 function Contact() {
   return (

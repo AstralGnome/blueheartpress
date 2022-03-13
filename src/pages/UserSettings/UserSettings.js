@@ -1,7 +1,8 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import "../UserSettings/UserSettings.css"
 
-function Profile() {
+function UserSettings() {
   let navigate = useNavigate();
   let { username } = useParams();
   
@@ -23,4 +24,4 @@ function Profile() {
 }
 }
 
-export default Profile;
+export default UserSettings;

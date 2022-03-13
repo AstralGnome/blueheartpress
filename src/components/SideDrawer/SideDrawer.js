@@ -4,7 +4,8 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';   
 import Drawer from '@mui/material/Drawer';
 import {BsFillInfoCircleFill} from "react-icons/bs"
-import BasicTabs from '../TabPanel';
+import BasicTabs from '../TabPanel/TabPanel';
+import "../TabPanel/TabPanel.css";
 
 export default function SideDrawer() {
   const [state, setState] = useState(false);

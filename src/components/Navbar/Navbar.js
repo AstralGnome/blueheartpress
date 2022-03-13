@@ -1,9 +1,3 @@
-// import { EditIcon, HandIcon, HomeIcon, IconButton, InfoSignIcon, Menu, MenuIcon, PersonIcon, Popover, ShareIcon, StarEmptyIcon, UserIcon } from 'evergreen-ui';
-// import React from 'react';
-// import { Link } from 'react-router-dom';
-// import { position } from 'ui-box';
-// import "../style/Navbar.css"
-
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
@@ -17,7 +11,7 @@ import Typography from '@mui/material/Typography';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
-import "../style/Navbar.css"
+import "../Navbar/Navbar.css"
 import { MdMenu } from "react-icons/md";
 import { Link } from 'react-router-dom';
 

@@ -1,0 +1,14 @@
+.SVG {
+  background: url("../../assets/Video/Valley-20s-1920px.svg");
+  background-size: cover;
+  background-attachment: fixed;
+}
+.ComicPages {
+  width: 599px;
+  border-radius: 7px;
+}
+.ComicPagesLarge {
+  width: 749px;
+  border-radius: 7px;
+}
+

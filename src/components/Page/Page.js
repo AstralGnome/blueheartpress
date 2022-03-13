@@ -1,4 +1,4 @@
-import "../style/Page.css"
+import "../Page/Page.css"
 
 function Page ({title, children}) {
   return (

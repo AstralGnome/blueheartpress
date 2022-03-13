@@ -1,6 +1,6 @@
 import React from 'react';
-import Wrapper from '../components/Wrapper';
-import "../style/Home.css"
+import Wrapper from '../../components/Wrapper/Wrapper';
+import "../Home/Home.css";
 
 function Home () {
 

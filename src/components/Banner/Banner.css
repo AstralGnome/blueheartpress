@@ -1,7 +1,7 @@
 .BGI {
   margin-top: 0;
   align-items: center;
-  background-image: url("../../public/Images/Banner.jpg");
+  background-image: url("../../../public/Images/Banner.jpg");
   height: 200px;
   width: 649px;
   box-sizing: border-box;

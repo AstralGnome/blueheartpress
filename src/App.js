@@ -1,14 +1,12 @@
 import "./App.css"
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
-import Contact from "./pages/Contact";
-import AboutMe from "./pages/AboutMe";  
-import AboutYou from "./pages/AboutYou";  
-import About from "./pages/About";  
-import ErrorPage from "./pages/ErrorPage";
-import Profile from "./pages/Profile";
-import Navbar from "./components/Navbar";
-import Comic from "./pages/Comic";
-import Home from "./pages/Home";
+import Contact from "./pages/Contact/Contact";
+import About from "./pages/About/About";  
+import ErrorPage from "./pages/ErrorPage/ErrorPage";
+import UserSettings from "./pages/UserSettings/UserSettings";
+import Navbar from "./components/Navbar/Navbar";
+import ContentDisplay from "./pages/ContentDisplay/ContentDisplay";
+import Home from "./pages/Home/Home";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 const darkTheme = createTheme({
@@ -24,13 +22,11 @@ function App() {
       <Navbar/>
         <Routes>
           <Route path="/" element={<Home/>}/>
-          <Route path="/user" element={<Comic/>}/>
+          <Route path="/user" element={<ContentDisplay/>}/>
           <Route path="/contact" element={<Contact/>}/>
           <Route path="/about" element={<About/>} component={About}/>
-          <Route path="/about/me" element={<AboutMe/>}/>
-          <Route path="/about/you" element={<AboutYou/>}/>
-          <Route path="/profile" element={<Profile/>}/>
-          <Route path="/profile/:username" element={<Profile/>}/>
+          <Route path="/profile" element={<UserSettings/>}/>
+          <Route path="/profile/:username" element={<UserSettings/>}/>
           <Route path="*" element={<ErrorPage/>}/>
         </Routes>
     </Router>
