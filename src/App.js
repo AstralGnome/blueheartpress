@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar/Navbar";
 import ContentDisplay from "./pages/ContentDisplay/ContentDisplay";
 import Home from "./pages/Home/Home";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Login from "./pages/Login/Login";
 
 const darkTheme = createTheme({
   palette: {
@@ -27,6 +28,7 @@ function App() {
           <Route path="/about" element={<About/>} component={About}/>
           <Route path="/profile" element={<UserSettings/>}/>
           <Route path="/profile/:username" element={<UserSettings/>}/>
+          <Route path="Login" element={<Login/>}/>
           <Route path="*" element={<ErrorPage/>}/>
         </Routes>
     </Router>
