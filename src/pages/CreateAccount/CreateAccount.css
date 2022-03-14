@@ -1,0 +1,10 @@
+.LoginParent {
+  width: 300px;
+  height: 300px;
+  justify-content:'center';
+  display: 'flex'; 
+  flex-wrap: 'wrap';
+}
+.TextField {
+  color: black;
+}

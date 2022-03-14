@@ -92,7 +92,7 @@ export default function Navbar() {
           <ListItemIcon>
             <PersonAdd fontSize="small" />
           </ListItemIcon>
-          Create Account
+          Log In
         </MenuItem>
         {/* <Link className="LinkText" to="/user"> */}
           <MenuItem component={Link} to={"/user"}>

@@ -1,11 +1,10 @@
 import React from 'react'
-import './Login.css'
+import './CreateAccount.css'
 import { Grid, TextField, Typography } from '@mui/material';
 import SvgButton from '../../components/SvgButton/SvgButton';
 import { Box } from '@mui/system';
-import { Link } from '@mui/material';
 
-function Login() {
+function CreateAccount() {
   
   return (
     <Grid style={{
@@ -35,7 +34,7 @@ function Login() {
           paddingTop: 'none',
           }}
             variant="h5"
-            >LOG IN
+            >CREATE ACCOUNT
         </Typography>
         <TextField style={{
           paddingBottom: 20
@@ -54,28 +53,22 @@ function Login() {
             required
             fullWidth
           />
+        <TextField style={{
+          paddingBottom: 20
+          }}
+            label="re-enter password"
+            variant="outlined"
+            required
+            fullWidth
+          />
         <Box style={{
           paddingBottom: 10
           }}>
           <SvgButton>Submit</SvgButton>
         </Box>
-          <Typography style={{
-            width: '100%',
-            color: 'lightgrey',
-            marginTop: 'none',
-            paddingTop: 5,
-            }}
-            variant="body2"
-            >Don't have an account?
-              <Link
-                underline='hover'
-                href='/createaccount'
-                > Create one!
-              </Link>
-          </Typography>
       </Grid>
     </Grid>
   )
 }
 
-export default Login
+export default CreateAccount

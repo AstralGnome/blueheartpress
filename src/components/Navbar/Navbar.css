@@ -12,6 +12,7 @@
 }
 
 .Navbar:hover {
+  cursor: pointer;
   box-shadow: 1px 1px 4px 2px rgba(243, 243, 255, 0.5) !important;
   background-color: rgb(41, 41, 41) !important;
 }
@@ -21,7 +22,7 @@
   box-shadow: 1px 1px 4px 2px rgba(212, 212, 212, 0.835) !important;
   opacity: 70%;
 }
-  
+
 .MenuIcon {
   font-size: 3rem;
   background-color: transparent !important;
