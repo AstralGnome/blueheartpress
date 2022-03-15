@@ -1,6 +1,10 @@
 const express       = require('express');
 const app           = express();
 const db            = require('./dbfiles/dbConfig');
+const cors          = require('cors')
+
+app.use(cors());
+app.use(express.json());
 
 //Connect
 db.connect ((err) => {
@@ -10,94 +14,121 @@ db.connect ((err) => {
   console.log('MySql Connecticated!');
 });
 
-//Create new table
-app.get('/createcommentstable', (req, res) => {
-  let sql = 'CREATE TABLE comments(id int AUTO_INCREMENT, title VARCHAR(255), body VARCHAR(255), PRIMARY KEY(id))';
-  db.query(sql, (err, results) => {
-    if(err) throw err;
-    console.log(results);
-    res.send('comments table created');
-  })
+app.post('/create', (req, res) => {
+  const firstName = req.body.first_name;
+  const lastName = req.body.last_name;
+
+  db.query(
+    "INSERT INTO user_info (first_name, last_name) VALUES (?,?)",
+    [firstName, lastName],
+    (err, result) => {
+      if (err) {
+      console.log(err);
+      }else{
+      res.send('values inserted')
+      }
+    }
+  )
 })
 
-//Insert comment1 into new table
+app.get('/employees', (req, res) => {
+  db.query("SELECT * FROM user_info",
+    (err, result) => {
+      if (err) {
+        console.log(err)
+      } else {
+        res.send(result)
+      }
+  })
+})
+// //Create new table
+// app.get('/createcommentstable', (req, res) => {
+//   let sql = 'CREATE TABLE comments(id int AUTO_INCREMENT, title VARCHAR(255), body VARCHAR(255), PRIMARY KEY(id))';
+//   db.query(sql, (err, results) => {
+//     if(err) throw err;
+//     console.log(results);
+//     res.send('comments table created');
+//   })
+// })
 
-app.get('/addcomment1', (req, res) => {
-  let post = {title: "Good comic!", body: "I liked the way the horse had his tongue hanging out."}
-  let sql ='INSERT INTO comments SET ?';
-  db.query(sql, post, (err, results) => {
-    if(err) throw err;
-    console.log(results);
-    res.send('Comment1 added.');
-  });
-});
+// //Insert comment1 into new table
 
-//Insert comment2 into new table
+// app.get('/addcomment1', (req, res) => {
+//   let post = {title: "Good comic!", body: "I liked the way the horse had his tongue hanging out."}
+//   let sql ='INSERT INTO comments SET ?';
+//   db.query(sql, post, (err, results) => {
+//     if(err) throw err;
+//     console.log(results);
+//     res.send('Comment1 added.');
+//   });
+// });
 
-app.get('/addcomment2', (req, res) => {
-  let post = {title: "Meh comic!", body: "I didn't like the way people cursed; they probably never cursed back then."}
-  let sql ='INSERT INTO comments SET ?';
-  db.query(sql, post, (err, results) => {
-    if(err) throw err;
-    console.log(results);
-    res.send('Comment2 added.');
-  });
-});
+// //Insert comment2 into new table
 
-//Select all comments
+// app.get('/addcomment2', (req, res) => {
+//   let post = {title: "Meh comic!", body: "I didn't like the way people cursed; they probably never cursed back then."}
+//   let sql ='INSERT INTO comments SET ?';
+//   db.query(sql, post, (err, results) => {
+//     if(err) throw err;
+//     console.log(results);
+//     res.send('Comment2 added.');
+//   });
+// });
 
-app.get('/getcomments', (req, res) => {
-  let sql ='SELECT * FROM comments';
-  db.query(sql, (err, results) => {
-    if(err) throw err;
-    console.log(results);
-    res.send('Comments fetched.');
-  });
-});
+// //Select all comments
 
-//Select individual comment.
+// app.get('/getcomments', (req, res) => {
+//   let sql ='SELECT * FROM comments';
+//   db.query(sql, (err, results) => {
+//     if(err) throw err;
+//     console.log(results);
+//     res.send('Comments fetched.');
+//   });
+// });
 
-app.get('/getcomment/:id', (req, res) => {
-  let sql = `SELECT * FROM comments WHERE id = ${req.params.id}`;
-  db.query(sql, (err, result) => {
-    if(err) throw err;
-    console.log(result);
-    res.send('Comment fetched.');
-  });
-});
+// //Select individual comment.
 
-//Update comment.
+// app.get('/getcomment/:id', (req, res) => {
+//   let sql = `SELECT * FROM comments WHERE id = ${req.params.id}`;
+//   db.query(sql, (err, result) => {
+//     if(err) throw err;
+//     console.log(result);
+//     res.send('Comment fetched.');
+//   });
+// });
 
-app.get('/updatecomment/:id', (req, res) => {
-  let newTitle = 'Updated Title'
-  let sql = `UPDATE comments SET title = '${newTitle}' WHERE id = ${req.params.id}`;
-  db.query(sql, (err, result) => {
-    if(err) throw err;
-    console.log(result);
-    res.send('Comment updated.');
-  });
-});
+// //Update comment.
 
-//Delete comment.
+// app.get('/updatecomment/:id', (req, res) => {
+//   let newTitle = 'Updated Title'
+//   let sql = `UPDATE comments SET title = '${newTitle}' WHERE id = ${req.params.id}`;
+//   db.query(sql, (err, result) => {
+//     if(err) throw err;
+//     console.log(result);
+//     res.send('Comment updated.');
+//   });
+// });
 
-app.get('/deletecomment/:id', (req, res) => {
-  let sql = `DELETE FROM comments WHERE id = ${req.params.id}`;
-  db.query(sql, (err, result) => {
-    if(err) throw err;
-    console.log(result);
-    res.send('Comment deleted.');
-  });
-});
+// //Delete comment.
 
-//Select all from user_info
-app.get('/', (req, res) => {
-  let sql = "SELECT * FROM comments"
-    db.query(sql, (err, results) => {
-    if (err) throw err;
-    res.send(results);
-    console.log(results);
-  });
-});
+// app.get('/deletecomment/:id', (req, res) => {
+//   let sql = `DELETE FROM comments WHERE id = ${req.params.id}`;
+//   db.query(sql, (err, result) => {
+//     if(err) throw err;
+//     console.log(result);
+//     res.send('Comment deleted.');
+//   });
+// });
+
+// //Select all from user_info
+// app.get('/', (req, res) => {
+//   let sql = "SELECT * FROM comments"
+//     db.query(sql, (err, results) => {
+//     if (err) throw err;
+//     res.send(results);
+//     console.log(results);
+//   });
+// });
 
 //Listen
 app.listen('3001', () => {
