@@ -3,6 +3,7 @@ import './CreateAccount.css'
 import { Grid, TextField, Typography } from '@mui/material';
 import SvgButton from '../../components/SvgButton/SvgButton';
 import { Box } from '@mui/system';
+import { Link } from '@mui/material';
 import Button from '@mui/material/Button';
 import Axios from 'axios';
 
@@ -12,22 +13,22 @@ function CreateAccount() {
   const [usernameReg, setUsernameReg] = useState('');
   const [passwordReg, setPasswordReg] = useState('');
 
-  const addUser = () => {
-    Axios.post('http://localhost:3001/create', {
+  const register = () => {
+    Axios.post('http://localhost:3001/register', {
       username: usernameReg,
       password: passwordReg
-    }).then(() => {
-      alert('Success!')
+    }).then((response) => {
+      console.log(response);
     })
   }
   
-  const [employeeList, setEmployeeList] = useState([])
+  // const [employeeList, setEmployeeList] = useState([])
   
-  const getEmployees = () => {
-    Axios.get('http://localhost:3001/users').then((response) => {
-      setEmployeeList(response.data);
-    })
-  }
+  // const getUsers = () => {
+  //   Axios.get('http://localhost:3001/users').then((response) => {
+  //     setEmployeeList(response.data);
+  //   })
+  // }
 
   return (
     <Grid style={{
@@ -88,16 +89,16 @@ function CreateAccount() {
           paddingBottom: 10
           }}>
         <Button
-        onClick={addUser}
+        onClick={register}
         >   
           <SvgButton
             >Submit 
           </SvgButton>
         </Button>
         </Box>
-        <Button
+        {/* <Button
           style={{width:'100%'}}
-          onClick={getEmployees}
+          onClick={getUsers}
           >Display Data
         </Button>
           {employeeList.map((val, key) => {
@@ -106,7 +107,22 @@ function CreateAccount() {
                 <h2>{val.username}</h2>
                 <h2>{val.password}</h2>
               </div>)
-          })}
+          })} */}
+
+          <Typography style={{
+            width: '100%',
+            color: 'lightgrey',
+            marginTop: 'none',
+            paddingTop: 5,
+            }}
+            variant="body2"
+            >Back to 
+              <Link
+                underline='hover'
+                href='/login'
+                > Login.
+              </Link>
+          </Typography>
       </Grid>
     </Grid>
   )

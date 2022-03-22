@@ -1,11 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Login.css'
 import { Grid, TextField, Typography } from '@mui/material';
 import SvgButton from '../../components/SvgButton/SvgButton';
 import { Box } from '@mui/system';
 import { Link } from '@mui/material';
+import Button from '@mui/material/Button';
+
+import Axios from 'axios'
 
 function Login() {
+
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  
+  const [loginStatus, setLoginStatus] = useState(false);
+
+  const login = () => {
+    Axios.post('http://localhost:3001/login', {
+      username: username,
+      password: password
+    }).then((response) => {
+
+      if (response.data.message === 'You entered an incorrect username/password combination.') {
+        console.log(response.data.message)
+        alert(response.data.message)
+      } else {
+        setLoginStatus(true)
+      }
+
+      console.log(response.data);
+    })
+  }
   
   return (
     <Grid style={{
@@ -44,6 +69,9 @@ function Login() {
             variant="outlined"
             required
             fullWidth
+            onChange={(event) => {
+              setUsername(event.target.value)
+            }}
             />
         {/* Would like to hide view of password as it's being typed. Check TextField documentation. */}
         <TextField style={{
@@ -53,11 +81,18 @@ function Login() {
             variant="outlined"
             required
             fullWidth
+            onChange={(event) => {
+              setPassword(event.target.value)
+            }}
           />
         <Box style={{
           paddingBottom: 10
           }}>
+        <Button
+          onClick={login}
+        >
           <SvgButton>Submit</SvgButton>
+        </Button>
         </Box>
           <Typography style={{
             width: '100%',
@@ -66,12 +101,12 @@ function Login() {
             paddingTop: 5,
             }}
             variant="body2"
-            >Don't have an account?
-              <Link
+            >{loginStatus === true ? `You're presently logged in.` : `Don't have an account?`}
+              {loginStatus === false ? <Link
                 underline='hover'
                 href='/createaccount'
                 > Create one!
-              </Link>
+              </Link>: ""}
           </Typography>
       </Grid>
     </Grid>
