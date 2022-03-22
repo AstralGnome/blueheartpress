@@ -9,25 +9,25 @@ import Axios from 'axios';
 
 function CreateAccount() {
 
-const [firstName, setFirstName] = useState('')
-const [lastName, setLastName] = useState('')
-
-const addEmployee = () => {
-  Axios.post('http://localhost:3001/create', {
-    first_name: firstName,
-    last_name: lastName
-  }).then(() => {
-    alert('Success!')
-  })
-}
-
-const [employeeList, setEmployeeList] = useState('')
-
-const getEmployees = () => {
-  Axios.get('http://localhost:3001/employees').then((response) => {
-    setEmployeeList(response.data);
-  })
-}
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  
+  const addEmployee = () => {
+    Axios.post('http://localhost:3001/create', {
+      first_name: firstName,
+      last_name: lastName
+    }).then(() => {
+      alert('Success!')
+    })
+  }
+  
+  const [employeeList, setEmployeeList] = useState([''])
+  
+  const getEmployees = () => {
+    Axios.get('http://localhost:3001/employees').then((response) => {
+      setEmployeeList(response.data);
+    })
+  }
 
   return (
     <Grid style={{
@@ -87,7 +87,9 @@ const getEmployees = () => {
         <Box style={{
           paddingBottom: 10
           }}>
-        <Button onClick={addEmployee}>   
+        <Button
+        onClick={addEmployee}
+        >   
           <SvgButton
             >Submit 
           </SvgButton>
