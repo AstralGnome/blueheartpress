@@ -15,12 +15,12 @@ db.connect ((err) => {
 });
 
 app.post('/create', (req, res) => {
-  const firstName = req.body.first_name;
-  const lastName = req.body.last_name;
+  const username = req.body.username;
+  const password = req.body.password;
 
   db.query(
-    "INSERT INTO user_info (first_name, last_name) VALUES (?,?)",
-    [firstName, lastName],
+    "INSERT INTO user_info (username, password) VALUES (?,?)",
+    [username, password],
     (err, result) => {
       if (err) {
       console.log(err);
@@ -31,7 +31,7 @@ app.post('/create', (req, res) => {
   )
 })
 
-app.get('/employees', (req, res) => {
+app.get('/users', (req, res) => {
   db.query("SELECT * FROM user_info",
     (err, result) => {
       if (err) {

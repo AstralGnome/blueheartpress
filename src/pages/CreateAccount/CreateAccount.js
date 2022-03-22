@@ -9,22 +9,22 @@ import Axios from 'axios';
 
 function CreateAccount() {
 
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
-  
-  const addEmployee = () => {
+  const [usernameReg, setUsernameReg] = useState('');
+  const [passwordReg, setPasswordReg] = useState('');
+
+  const addUser = () => {
     Axios.post('http://localhost:3001/create', {
-      first_name: firstName,
-      last_name: lastName
+      username: usernameReg,
+      password: passwordReg
     }).then(() => {
       alert('Success!')
     })
   }
   
-  const [employeeList, setEmployeeList] = useState([''])
+  const [employeeList, setEmployeeList] = useState([])
   
   const getEmployees = () => {
-    Axios.get('http://localhost:3001/employees').then((response) => {
+    Axios.get('http://localhost:3001/users').then((response) => {
       setEmployeeList(response.data);
     })
   }
@@ -61,7 +61,7 @@ function CreateAccount() {
         </Typography>
         <TextField 
           onChange={(event) => {
-          setFirstName(event.target.value)
+            setUsernameReg(event.target.value)
           }}  
           style={{
           paddingBottom: 20
@@ -74,7 +74,7 @@ function CreateAccount() {
         {/* Would like to hide view of password as it's being typed. Check TextField documentation. */}
         <TextField 
           onChange={(event) => {
-          setLastName(event.target.value)
+            setPasswordReg(event.target.value)
           }} 
           style={{
           paddingBottom: 20
@@ -88,7 +88,7 @@ function CreateAccount() {
           paddingBottom: 10
           }}>
         <Button
-        onClick={addEmployee}
+        onClick={addUser}
         >   
           <SvgButton
             >Submit 
@@ -103,8 +103,8 @@ function CreateAccount() {
           {employeeList.map((val, key) => {
             return (
               <div className="MappingWhite">
-                <h2>{val.first_name}</h2>
-                <h2>{val.last_name}</h2>
+                <h2>{val.username}</h2>
+                <h2>{val.password}</h2>
               </div>)
           })}
       </Grid>
