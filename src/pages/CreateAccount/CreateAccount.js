@@ -18,6 +18,7 @@ function CreateAccount() {
       username: usernameReg,
       password: passwordReg
     }).then((response) => {
+      alert(`You've successfully created a new account!`)
       console.log(response);
     })
   }

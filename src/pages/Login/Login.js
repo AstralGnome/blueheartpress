@@ -24,6 +24,7 @@ function Login() {
       if (response.data.message === 'You entered an incorrect username/password combination.') {
         console.log(response.data.message)
         alert(response.data.message)
+        setLoginStatus(false)
       } else {
         setLoginStatus(true)
       }
