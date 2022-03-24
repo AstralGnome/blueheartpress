@@ -22,14 +22,6 @@ function CreateAccount() {
       console.log(response);
     })
   }
-  
-  // const [employeeList, setEmployeeList] = useState([])
-  
-  // const getUsers = () => {
-  //   Axios.get('http://localhost:3001/users').then((response) => {
-  //     setEmployeeList(response.data);
-  //   })
-  // }
 
   return (
     <Grid style={{
@@ -89,27 +81,17 @@ function CreateAccount() {
         <Box style={{
           paddingBottom: 10
           }}>
+        
         <Button
         onClick={register}
+        href={usernameReg.length > 0 && passwordReg.length > 0 ? 
+        '/login' : null}
         >   
           <SvgButton
             >Submit 
           </SvgButton>
         </Button>
         </Box>
-        {/* <Button
-          style={{width:'100%'}}
-          onClick={getUsers}
-          >Display Data
-        </Button>
-          {employeeList.map((val, key) => {
-            return (
-              <div className="MappingWhite">
-                <h2>{val.username}</h2>
-                <h2>{val.password}</h2>
-              </div>)
-          })} */}
-
           <Typography style={{
             width: '100%',
             color: 'lightgrey',
