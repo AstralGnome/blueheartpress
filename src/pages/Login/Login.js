@@ -85,7 +85,7 @@ function Login() {
             required
             fullWidth
             onChange={(event) => {
-              setPassword(event.target.value)
+              setPassword(event.target.value) 
             }}
           />
         <Box style={{
