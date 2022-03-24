@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Login.css'
 import { Grid, TextField, Typography } from '@mui/material';
 import SvgButton from '../../components/SvgButton/SvgButton';
@@ -15,8 +15,10 @@ function Login() {
   
   const [loginStatus, setLoginStatus] = useState(false);
 
+  Axios.defaults.withCredentials = true;
+
   const login = () => {
-    Axios.post('http://localhost:3001/login', {
+    Axios.post("http://localhost:3001/login", {
       username: username,
       password: password
     }).then((response) => {
@@ -34,6 +36,12 @@ function Login() {
       console.log(response.data);
     })
   }
+
+  useEffect(() => {
+    Axios.get("http://localhost:3001/login").then((response) => {
+      console.log(response);
+    })
+  }, [])
   
   return (
     <Grid style={{

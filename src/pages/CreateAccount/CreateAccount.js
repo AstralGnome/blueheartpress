@@ -7,7 +7,6 @@ import { Link } from '@mui/material';
 import Button from '@mui/material/Button';
 import Axios from 'axios';
 
-
 function CreateAccount() {
 
   const [usernameReg, setUsernameReg] = useState('');
