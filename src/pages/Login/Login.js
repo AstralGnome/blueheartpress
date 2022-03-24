@@ -21,14 +21,16 @@ function Login() {
       password: password
     }).then((response) => {
 
-      if (response.data.message === 'You entered an incorrect username/password combination.') {
-        console.log(response.data.message)
+      if (response.data.message === "Incorrect password.") {
+        alert(response.data.message)
+        setLoginStatus(false)
+      } 
+      else if (response.data.message === "User doesn't exist.") {
         alert(response.data.message)
         setLoginStatus(false)
       } else {
         setLoginStatus(true)
       }
-
       console.log(response.data);
     })
   }

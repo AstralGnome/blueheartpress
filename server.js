@@ -3,6 +3,9 @@ const app           = express();
 const db            = require('./dbfiles/dbConfig');
 const cors          = require('cors')
 
+const bcrypt        = require('bcrypt')
+const saltRounds    = 10
+
 app.use(cors());
 app.use(express.json());
 
@@ -18,37 +21,50 @@ app.post('/register', (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
 
-  db.query(
-    "INSERT INTO user_info (username, password) VALUES (?,?)",
-    [username, password],
-    (err, result) => {
-      if (err) {
-      console.log(err);
-      } else {
-      res.send('values inserted')
-      }
+  bcrypt.hash(password, saltRounds, (err, hash) => {
+
+    if (err) {
+      console.log(err)
     }
-  )
-})
+
+    db.query(
+      "INSERT INTO user_info (username, password) VALUES (?,?)",
+      [username, hash],
+      (err, result) => {
+        if (err) {
+        console.log(err);
+        } else {
+        res.send('values inserted')
+        }
+      }
+    )
+  })
+  })
 
 app.post('/login', (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
 
   db.query(
-    "SELECT * FROM user_info WHERE username = ? AND password = ?",
-    [username, password],
+    "SELECT * FROM user_info WHERE username = ?;",
+    username,
     (err, result) => {
       if (err) {
       res.send({err: err});
       } 
       
       if (result.length > 0) {
-        res.send(result)
+        bcrypt.compare(password, result[0].password, (error, response) => {
+          if (response) {
+            res.send(result)
+          } else {
+            res.send({message:"Incorrect password."});
+          }
+        });
       } else {
-        res.send({message: 'You entered an incorrect username/password combination.'});
+        res.send({message: "User doesn't exist."});
       }
-      }
+    }
   )
 })
 
@@ -62,6 +78,11 @@ app.get('/users', (req, res) => {
       }
   })
 })
+
+app.listen('3001', () => {
+  console.log('Server started on port 3001');
+});
+
 // //Create new table
 // app.get('/createcommentstable', (req, res) => {
 //   let sql = 'CREATE TABLE comments(id int AUTO_INCREMENT, title VARCHAR(255), body VARCHAR(255), PRIMARY KEY(id))';
@@ -152,6 +173,3 @@ app.get('/users', (req, res) => {
 // });
 
 //Listen
-app.listen('3001', () => {
-  console.log('Server started on port 3001');
-});
