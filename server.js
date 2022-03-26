@@ -21,8 +21,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(
   session({
     key: "userId",
-    //secret's value should be very long and obscure!
-    secret: "subscribe",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {
