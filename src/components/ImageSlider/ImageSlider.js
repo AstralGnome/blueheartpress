@@ -5,7 +5,6 @@ import {SliderData} from "./SliderData.js"
 import { useState } from 'react';
 import {FaArrowAltCircleRight, FaArrowAltCircleLeft} from "react-icons/fa";
 import {ImZoomIn, ImZoomOut} from "react-icons/im"
-import "animate.css";
 import SideDrawer from "../SideDrawer/SideDrawer"
 
 const ImageSlider = ({slides}) => {

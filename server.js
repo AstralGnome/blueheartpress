@@ -10,6 +10,8 @@ const session       = require('express-session');
 const bcrypt        = require('bcrypt')
 const saltRounds    = 10
 
+require('dotenv').config();
+
 app.use(cors({
   origin: ["http://localhost:3000"],
   methods: ["GET", "POST"],

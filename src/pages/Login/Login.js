@@ -5,6 +5,7 @@ import SvgButton from '../../components/SvgButton/SvgButton';
 import { Box } from '@mui/system';
 import { Link } from '@mui/material';
 import Button from '@mui/material/Button';
+import 'animate.css';
 
 import Axios from 'axios'
 
@@ -65,13 +66,15 @@ function Login() {
         borderRadius: '2px'
         }}
         >
-        <Typography style={{
+        <Typography 
+          style={{
           color: 'lightgrey',
           paddingBottom: 30,
           marginTop: 'none',
           paddingTop: 'none',
           }}
             variant="h5"
+            className="animate__animated animate__fadeInDown"
             >LOG IN
         </Typography>
         <TextField style={{

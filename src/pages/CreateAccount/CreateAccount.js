@@ -50,6 +50,7 @@ function CreateAccount() {
           paddingTop: 'none',
           }}
             variant="h5"
+            className="animate__animated animate__fadeInDown"
             >CREATE ACCOUNT
         </Typography>
         <TextField 
