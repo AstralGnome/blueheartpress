@@ -10,6 +10,8 @@ const session       = require('express-session');
 const bcrypt        = require('bcrypt')
 const saltRounds    = 10
 
+const jwt           = require('jsonwebtoken')
+
 require('dotenv').config();
 
 app.use(cors({
@@ -36,7 +38,7 @@ app.use(express.json());
 
 //Connect
 db.connect ((err) => {
-  if(err) {
+  if (err) {
     throw err;
   }
   console.log('MySql Connecticated!');
@@ -65,6 +67,27 @@ app.post("/register", (req, res) => {
     )
   })
   })
+//Creating Middleware. Needs to exist ABOVE anywhere verifyJWT is being called.
+const verifyJWT = (req, res, next) => {
+  const token = req.headers['x-access-token']
+
+  if (!token) {
+    res.send('No token. Please give us the token!')
+  } else {
+    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+      if (err) {
+        res.send({auth: false, message: 'You did not authenticate.'})
+      } else {
+        req.userID = decoded.id;
+        next();
+      }
+    })
+  }
+}
+
+app.get('/isUserAuth', verifyJWT, (req, res) => {
+  res.send('You are authenticated! Congrabulations!!!')
+})
 
 app.get('/login', (req, res) => {
   if (req.session.user) {
@@ -89,15 +112,20 @@ app.post('/login', (req, res) => {
       if (result.length > 0) {
         bcrypt.compare(password, result[0].password, (error, response) => {
           if (response) {
+            
+            const id = result[0].id
+            const token = jwt.sign({id}, process.env.JWT_SECRET, {
+              expiresIn: 300,
+            })
             req.session.user = result;
-            console.log(req.session.user)
-            res.send(result)
+
+            res.json({auth: true, token: token, result: result})
           } else {
-            res.send({message:"Incorrect password."});
+            res.json({auth: false, message:"Incorrect password."});
           }
         });
       } else {
-        res.send({message: "User doesn't exist."});
+        res.json({auth: false, message: "User doesn't exist."});
       }
     }
   )

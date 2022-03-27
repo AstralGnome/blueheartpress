@@ -32,7 +32,9 @@ function Login() {
         alert(response.data.message)
         setLoginStatus(false)
       } else {
+        localStorage.setItem('token', response.data.token)
         setLoginStatus(true)
+        alert('Login successful.')
       }
       console.log(response.data);
     })
@@ -44,6 +46,16 @@ function Login() {
       setLoginStatus(true);
     });
   }, [])
+
+  const userAuthenticated = () => {
+    Axios.get("http://localhost:3001/isUserAuth", {
+      headers: {
+        'x-access-token': localStorage.getItem('token'),
+    },
+  }).then((response) => {
+      console.log(response)
+    })
+  }
   
   return (
     <Grid style={{
@@ -123,6 +135,7 @@ function Login() {
                 > Create one!
               </Link>: ""}
           </Typography>
+          {loginStatus && <Button onClick={userAuthenticated}>Authentication Check</Button>}
       </Grid>
     </Grid>
   )
