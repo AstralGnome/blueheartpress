@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Login.css'
 import { Grid, TextField, Typography } from '@mui/material';
 import SvgButton from '../../components/SvgButton/SvgButton';
@@ -6,19 +6,22 @@ import { Box } from '@mui/system';
 import { Link } from '@mui/material';
 import Button from '@mui/material/Button';
 import 'animate.css';
+import { LoginContext } from "../../Helper/Context"
 
 import Axios from 'axios'
 
 function Login() {
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [ username, setUsername ] = useState('');
+  const [ password, setPassword ] = useState('');
   
-  const [loginStatus, setLoginStatus] = useState(false);
-
+  const { loggedIn, setLoggedIn } = useContext(LoginContext);
+  
   Axios.defaults.withCredentials = true;
-
+  
   const login = () => {
+    
+    
     Axios.post("http://localhost:3001/login", {
       username: username,
       password: password
@@ -26,14 +29,14 @@ function Login() {
 
       if (response.data.message === "Incorrect password.") {
         alert(response.data.message)
-        setLoginStatus(false)
+        setLoggedIn(false)
       } 
       else if (response.data.message === "User doesn't exist.") {
         alert(response.data.message)
-        setLoginStatus(false)
+        setLoggedIn(false)
       } else {
         localStorage.setItem('token', response.data.token)
-        setLoginStatus(true)
+        setLoggedIn(true)
         alert('Login successful.')
       }
       console.log(response.data);
@@ -43,7 +46,7 @@ function Login() {
   useEffect(() => {
     Axios.get("http://localhost:3001/login").then((response) => {
       if (response.data.loggedIn === true)
-      setLoginStatus(true);
+      setLoggedIn(true);
     });
   }, [])
 
@@ -128,14 +131,14 @@ function Login() {
             paddingTop: 5,
             }}
             variant="body2"
-            >{loginStatus === true ? `You're presently logged in.` : `Don't have an account?`}
-              {loginStatus === false ? <Link
+            >{loggedIn === true ? `You're presently logged in.` : `Don't have an account?`}
+              {loggedIn === false ? <Link
                 underline='hover'
                 href='/createaccount'
                 > Create one!
               </Link>: ""}
           </Typography>
-          {loginStatus && <Button onClick={userAuthenticated}>Authentication Check</Button>}
+          {loggedIn && <Button onClick={userAuthenticated}>Authentication Check</Button>}
       </Grid>
     </Grid>
   )

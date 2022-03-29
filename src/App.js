@@ -23,11 +23,11 @@ const darkTheme = createTheme({
 
 function App() {
   
-  const [loginStatus, setLoginStatus] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   return (
-  <ThemeProvider theme={darkTheme}>
-    <LoginContext.Provider value={{loginStatus, setLoginStatus}}>
+  <LoginContext.Provider value={{loggedIn, setLoggedIn}}>
+    <ThemeProvider theme={darkTheme}>
       <Router>
         <Navbar/>
           <Routes>
@@ -42,8 +42,8 @@ function App() {
             <Route path="*" element={<ErrorPage/>}/>
           </Routes>
       </Router>
-    </LoginContext.Provider>
-  </ThemeProvider>
+    </ThemeProvider>
+  </LoginContext.Provider>
   );
 }
 
