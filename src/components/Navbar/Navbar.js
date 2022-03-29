@@ -9,13 +9,19 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import PersonAdd from '@mui/icons-material/PersonAdd';
+import PersonRemove from '@mui/icons-material/PersonRemove';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import "../Navbar/Navbar.css"
 import { MdMenu } from "react-icons/md";
 import { Link } from 'react-router-dom';
+import { LoginContext } from '../../Helper/Context'
+import { useContext } from 'react'
 
 export default function Navbar() {
+
+  const { loggedIn } = useContext(LoginContext)
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -88,26 +94,39 @@ export default function Navbar() {
           <Avatar /> Experience
         </MenuItem>
         <Divider />
-        <MenuItem component={Link} to={"/login"}>
+
+        {loggedIn ?
+        <MenuItem component={Link} to={"/"}>
           <ListItemIcon>
             <PersonAdd fontSize="small" />
           </ListItemIcon>
-          Log In
+          Logout
         </MenuItem>
+        :
+        <MenuItem component={Link} to={"/login"}>
+          <ListItemIcon>
+            <PersonRemove fontSize="small" />
+          </ListItemIcon>
+          Login
+        </MenuItem>
+        }
+
         {/* <Link className="LinkText" to="/user"> */}
-          <MenuItem component={Link} to={"/user"}>
-            <ListItemIcon>
-            <Logout fontSize="small" />
-            </ListItemIcon>
-            Browse
-          </MenuItem>
+        <MenuItem component={Link} to={"/user"}>
+          <ListItemIcon>
+          <Logout fontSize="small" />
+          </ListItemIcon>
+          Browse
+        </MenuItem>
         {/* </Link> */}
+        { loggedIn &&
         <MenuItem component={Link} to={"/user"}>
           <ListItemIcon>
             <Settings fontSize="small" />
           </ListItemIcon>
           Settings
         </MenuItem>
+        }
       </Menu>
     </React.Fragment>
   );

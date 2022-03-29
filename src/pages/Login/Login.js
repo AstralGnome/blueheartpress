@@ -48,7 +48,7 @@ function Login() {
       if (response.data.loggedIn === true)
       setLoggedIn(true);
     });
-  }, [])
+  })
 
   const userAuthenticated = () => {
     Axios.get("http://localhost:3001/isUserAuth", {
