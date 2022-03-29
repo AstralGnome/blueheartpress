@@ -50,15 +50,16 @@ function Login() {
     });
   })
 
-  const userAuthenticated = () => {
-    Axios.get("http://localhost:3001/isUserAuth", {
-      headers: {
-        'x-access-token': localStorage.getItem('token'),
-    },
-  }).then((response) => {
-      console.log(response)
-    })
-  }
+  //Can add this to the Submit button in order to verify Auth.
+  // const userAuthenticated = () => {
+  //   Axios.get("http://localhost:3001/isUserAuth", {
+  //     headers: {
+  //       'x-access-token': localStorage.getItem('token'),
+  //   },
+  // }).then((response) => {
+  //     console.log(response)
+  //   })
+  // }
   
   return (
     <Grid style={{
@@ -138,7 +139,6 @@ function Login() {
                 > Create one!
               </Link>: ""}
           </Typography>
-          {loggedIn && <Button onClick={userAuthenticated}>Authentication Check</Button>}
       </Grid>
     </Grid>
   )

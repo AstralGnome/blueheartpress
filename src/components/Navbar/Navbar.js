@@ -20,7 +20,13 @@ import { useContext } from 'react'
 
 export default function Navbar() {
 
-  const { loggedIn } = useContext(LoginContext)
+  const { loggedIn, setLoggedIn } = useContext(LoginContext)
+  
+  const logOut = () => {
+    setLoggedIn(false);
+    // localStorage.clear();
+    console.log('hit')
+  }
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -96,16 +102,16 @@ export default function Navbar() {
         <Divider />
 
         {loggedIn ?
-        <MenuItem component={Link} to={"/"}>
+        <MenuItem onClick={logOut} component={Link} to={"/createaccount"}>
           <ListItemIcon>
-            <PersonAdd fontSize="small" />
+            <PersonRemove fontSize="small" />
           </ListItemIcon>
           Logout
         </MenuItem>
         :
         <MenuItem component={Link} to={"/login"}>
           <ListItemIcon>
-            <PersonRemove fontSize="small" />
+            <PersonAdd fontSize="small" />
           </ListItemIcon>
           Login
         </MenuItem>
