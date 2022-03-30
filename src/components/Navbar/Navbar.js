@@ -102,7 +102,7 @@ export default function Navbar() {
         <Divider />
 
         {loggedIn ?
-        <MenuItem onClick={logOut} component={Link} to={"/createaccount"}>
+        <MenuItem onClick={logOut} component={Link} to={"/login"}>
           <ListItemIcon>
             <PersonRemove fontSize="small" />
           </ListItemIcon>
