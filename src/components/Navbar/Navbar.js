@@ -9,6 +9,8 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import PersonAdd from '@mui/icons-material/PersonAdd';
+import AutoStoriesIcon from '@mui/icons-material/AutoStories';
+import IcecreamIcon from '@mui/icons-material/Icecream';
 import PersonRemove from '@mui/icons-material/PersonRemove';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
@@ -16,16 +18,18 @@ import "../Navbar/Navbar.css"
 import { MdMenu } from "react-icons/md";
 import { Link } from 'react-router-dom';
 import { LoginContext } from '../../Helper/Context'
+import { UsernameContext } from '../../Helper/Context'
 import { useContext } from 'react'
 
 export default function Navbar() {
 
   const { loggedIn, setLoggedIn } = useContext(LoginContext)
+  const { username } = useContext(UsernameContext)
   
   const logOut = () => {
     setLoggedIn(false);
     // localStorage.clear();
-    console.log('hit')
+    console.log(username)
   }
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -96,11 +100,32 @@ export default function Navbar() {
         <MenuItem component={Link} to={"/"}>
           <HomeIcon sx={{paddingRight: "10px"}}/> Home
         </MenuItem>
+        {/* <Link className="LinkText" to="/user"> */}
         <MenuItem component={Link} to={"/user"}>
-          <Avatar /> Experience
+          <ListItemIcon>
+            <IcecreamIcon fontSize="small" />
+          </ListItemIcon>
+          Peruse
         </MenuItem>
+        {/* </Link> */}
+        
         <Divider />
 
+        {loggedIn &&
+        <MenuItem component={Link} to={"/user"}>
+          <Avatar fontSize="small"/> {username}
+        </MenuItem>
+        }
+        
+        { loggedIn &&
+        <MenuItem component={Link} to={"/user"}>
+          <ListItemIcon>
+            <AutoStoriesIcon fontSize="small" />
+          </ListItemIcon>
+          Publish
+        </MenuItem>
+        }
+        
         {loggedIn ?
         <MenuItem onClick={logOut} component={Link} to={"/login"}>
           <ListItemIcon>
@@ -117,14 +142,6 @@ export default function Navbar() {
         </MenuItem>
         }
 
-        {/* <Link className="LinkText" to="/user"> */}
-        <MenuItem component={Link} to={"/user"}>
-          <ListItemIcon>
-          <Logout fontSize="small" />
-          </ListItemIcon>
-          Browse
-        </MenuItem>
-        {/* </Link> */}
         { loggedIn &&
         <MenuItem component={Link} to={"/user"}>
           <ListItemIcon>

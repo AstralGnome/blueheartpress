@@ -7,12 +7,13 @@ import { Link } from '@mui/material';
 import Button from '@mui/material/Button';
 import 'animate.css';
 import { LoginContext } from "../../Helper/Context"
+import { UsernameContext } from "../../Helper/Context"
 
 import Axios from 'axios'
 
 function Login() {
 
-  const [ username, setUsername ] = useState('');
+  const { username, setUsername } = useContext(UsernameContext);
   const [ password, setPassword ] = useState('');
   
   const { loggedIn, setLoggedIn } = useContext(LoginContext);
@@ -22,7 +23,7 @@ function Login() {
   const login = () => {
     
     
-    Axios.post("https://blueheartpress/login", {
+    Axios.post("http://localhost:3001/login", {
       username: username,
       password: password
     }).then((response) => {
@@ -44,7 +45,7 @@ function Login() {
   }
 
   useEffect(() => {
-    Axios.get("https://blueheartpress/login").then((response) => {
+    Axios.get("http://localhost:3001/login").then((response) => {
       if (response.data.loggedIn === true)
       setLoggedIn(true);
     });

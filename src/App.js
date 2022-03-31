@@ -13,6 +13,7 @@ import Login from "./pages/Login/Login";
 import CreateAccount from "./pages/CreateAccount/CreateAccount";
 
 import { LoginContext } from './Helper/Context'
+import { UsernameContext } from './Helper/Context'
 
 
 const darkTheme = createTheme({
@@ -23,27 +24,30 @@ const darkTheme = createTheme({
 
 function App() {
   
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn]   = useState(false);
+  const [ username, setUsername ] = useState('')
 
   return (
-  <LoginContext.Provider value={{loggedIn, setLoggedIn}}>
-    <ThemeProvider theme={darkTheme}>
-      <Router>
-        <Navbar/>
-          <Routes>
-            <Route path="/" element={<Home/>}/>
-            <Route path="/user" element={<ContentDisplay/>}/>
-            <Route path="/contact" element={<Contact/>}/>
-            <Route path="/about" element={<About/>} component={About}/>
-            <Route path="/profile" element={<UserSettings/>}/>
-            <Route path="/profile/:username" element={<UserSettings/>}/>
-            <Route path="/login" element={<Login/>}/>
-            <Route path="/createaccount" element={<CreateAccount/>}/>
-            <Route path="*" element={<ErrorPage/>}/>
-          </Routes>
-      </Router>
-    </ThemeProvider>
-  </LoginContext.Provider>
+  <UsernameContext.Provider value={{username, setUsername}}>
+    <LoginContext.Provider value={{loggedIn, setLoggedIn}}>
+      <ThemeProvider theme={darkTheme}>
+        <Router>
+          <Navbar/>
+            <Routes>
+              <Route path="/" element={<Home/>}/>
+              <Route path="/user" element={<ContentDisplay/>}/>
+              <Route path="/contact" element={<Contact/>}/>
+              <Route path="/about" element={<About/>} component={About}/>
+              <Route path="/profile" element={<UserSettings/>}/>
+              <Route path="/profile/:username" element={<UserSettings/>}/>
+              <Route path="/login" element={<Login/>}/>
+              <Route path="/createaccount" element={<CreateAccount/>}/>
+              <Route path="*" element={<ErrorPage/>}/>
+            </Routes>
+        </Router>
+      </ThemeProvider>
+    </LoginContext.Provider>
+  </UsernameContext.Provider>
   );
 }
 
