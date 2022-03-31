@@ -13,7 +13,6 @@ import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import IcecreamIcon from '@mui/icons-material/Icecream';
 import PersonRemove from '@mui/icons-material/PersonRemove';
 import Settings from '@mui/icons-material/Settings';
-import Logout from '@mui/icons-material/Logout';
 import "../Navbar/Navbar.css"
 import { MdMenu } from "react-icons/md";
 import { Link } from 'react-router-dom';

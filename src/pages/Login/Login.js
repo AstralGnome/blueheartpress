@@ -40,7 +40,8 @@ function Login() {
         setLoggedIn(true)
         alert('Login successful.')
       }
-      console.log(response.data);
+      //remove this console log before going into production
+      // console.log(response.data);
     })
   }
 
