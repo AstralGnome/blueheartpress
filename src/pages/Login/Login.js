@@ -22,7 +22,7 @@ function Login() {
   const login = () => {
     
     
-    Axios.post("http://localhost:3001/login", {
+    Axios.post("https://blueheartpress/login", {
       username: username,
       password: password
     }).then((response) => {
@@ -44,7 +44,7 @@ function Login() {
   }
 
   useEffect(() => {
-    Axios.get("http://localhost:3001/login").then((response) => {
+    Axios.get("https://blueheartpress/login").then((response) => {
       if (response.data.loggedIn === true)
       setLoggedIn(true);
     });
