@@ -16,7 +16,7 @@ require('dotenv').config();
 
 //Notice that origin is using an asterisk!!! This is only for Production!!!
 app.use(cors({
-  origin: "http://blueheartpress.com",
+  origin: "https://blueheartpress.com",
   methods: ["GET", "POST"],
   credentials: true
 }));
