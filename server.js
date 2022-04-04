@@ -12,12 +12,15 @@ const saltRounds    = 10
 
 const jwt           = require('jsonwebtoken')
 
-const allowedOrigins = require('./config/allowedOrigins')
+// const allowedOrigins = require('./config/allowedOrigins')
 
 require('dotenv').config(); 
 
 app.use(cors({
-  origin: allowedOrigins,
+  origin: [
+    'https://www.blueheartpress.com',
+    'http://localhost:3000'
+  ],
   methods: ["GET", "POST"],
   credentials: true
 }));
