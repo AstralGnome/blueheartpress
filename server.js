@@ -12,10 +12,12 @@ const saltRounds    = 10
 
 const jwt           = require('jsonwebtoken')
 
+const allowedOrigins = require('./config/allowedOrigins')
+
 require('dotenv').config(); 
 
 app.use(cors({
-  origin: "http://localhost:3000",
+  origin: allowedOrigins,
   methods: ["GET", "POST"],
   credentials: true
 }));
