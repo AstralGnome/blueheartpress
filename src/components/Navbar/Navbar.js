@@ -26,9 +26,9 @@ export default function Navbar() {
   const { username } = useContext(UsernameContext)
   
   const logOut = () => {
+    localStorage.clear();
     setLoggedIn(false);
-    // localStorage.clear();
-    console.log(username)
+    console.log(loggedIn)
   }
 
   const [anchorEl, setAnchorEl] = React.useState(null);

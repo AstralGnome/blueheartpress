@@ -22,8 +22,7 @@ function Login() {
   
   const login = () => {
     
-    
-    Axios.post("https://blueheartpress/login", {
+    Axios.post("http://localhost:3001/login", {
       username: username,
       password: password
     }).then((response) => {
@@ -31,6 +30,7 @@ function Login() {
       if (response.data.message === "Incorrect password.") {
         alert(response.data.message)
         setLoggedIn(false)
+        console.log(response.data);
       } 
       else if (response.data.message === "User doesn't exist.") {
         alert(response.data.message)
@@ -41,12 +41,11 @@ function Login() {
         alert('Login successful.')
       }
       //remove this console log before going into production
-      // console.log(response.data);
     })
   }
 
   useEffect(() => {
-    Axios.get("https://blueheartpress/login").then((response) => {
+    Axios.get("http://localhost:3001/login").then((response) => {
       if (response.data.loggedIn === true)
       setLoggedIn(true);
     });
