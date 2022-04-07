@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import './Login.css'
 import { Grid, TextField, Typography } from '@mui/material';
 import SvgButton from '../../components/SvgButton/SvgButton';
@@ -8,20 +8,19 @@ import Button from '@mui/material/Button';
 import 'animate.css';
 import { LoginContext } from "../../Helper/Context"
 import { UsernameContext } from "../../Helper/Context"
+import { PasswordContext } from "../../Helper/Context"
 
 import Axios from 'axios'
 
 function Login() {
 
   const { username, setUsername } = useContext(UsernameContext);
-  const [ password, setPassword ] = useState('');
-  
+  const { password, setPassword } = useContext(PasswordContext);
   const { loggedIn, setLoggedIn } = useContext(LoginContext);
   
   Axios.defaults.withCredentials = true;
   
   const login = () => {
-    
     Axios.post("http://localhost:3001/login", {
       username: username,
       password: password
@@ -30,7 +29,6 @@ function Login() {
       if (response.data.message === "Incorrect password.") {
         alert(response.data.message)
         setLoggedIn(false)
-        console.log(response.data);
       } 
       else if (response.data.message === "User doesn't exist.") {
         alert(response.data.message)
@@ -39,6 +37,7 @@ function Login() {
         localStorage.setItem('token', response.data.token)
         setLoggedIn(true)
         alert('Login successful.')
+        console.log(password);
       }
       //remove this console log before going into production
     })
@@ -50,6 +49,7 @@ function Login() {
       setLoggedIn(true);
     });
   })
+
 
   //Can add this to the Submit button in order to verify Auth.
   // const userAuthenticated = () => {
@@ -145,4 +145,4 @@ function Login() {
   )
 }
 
-export default Login
+export default Login;

@@ -20,15 +20,22 @@ import { LoginContext } from '../../Helper/Context'
 import { UsernameContext } from '../../Helper/Context'
 import { useContext } from 'react'
 
-export default function Navbar() {
+// const express       = require('express');
+// const app           = express();
+// app.use(express.json());
 
-  const { loggedIn, setLoggedIn } = useContext(LoginContext)
-  const { username } = useContext(UsernameContext)
+export default function Navbar() {
   
+  const { loggedIn, setLoggedIn } = useContext(LoginContext)
+  const { username }              = useContext(UsernameContext)
+
+  //This logout does NOT result in auth:false!
+  //https://stackoverflow.com/questions/16360293/how-to-log-out-from-basicauth-express
   const logOut = () => {
-    localStorage.clear();
-    setLoggedIn(false);
-    console.log(loggedIn)
+    // app.get('/logout', (req, res) => {
+    //   res.status(401).end()
+    // })
+    setLoggedIn(false)
   }
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -117,7 +124,7 @@ export default function Navbar() {
         }
         
         { loggedIn &&
-        <MenuItem component={Link} to={"/user"}>
+        <MenuItem component={Link} to={"/publish"}>
           <ListItemIcon>
             <AutoStoriesIcon fontSize="small" />
           </ListItemIcon>

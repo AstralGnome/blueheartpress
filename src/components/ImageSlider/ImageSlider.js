@@ -8,15 +8,15 @@ import {ImZoomIn, ImZoomOut} from "react-icons/im"
 import SideDrawer from "../SideDrawer/SideDrawer"
 
 const ImageSlider = ({slides}) => {
-const [current, setCurrent] = useState(0);
+const [currentPage, setCurrentPage] = useState(0);
 const [currentToggle, setToggle] = useState(true);
 const length = slides.length
 
 const nextSlide = () => {
-  setCurrent(current === length -1 ? 0 : current + 1)
+  setCurrentPage(currentPage === length -1 ? 0 : currentPage + 1)
 }
 const prevSlide = () => {
-  setCurrent(current === 0 ? length -1 : current - 1);
+  setCurrentPage(currentPage === 0 ? length -1 : currentPage - 1);
 }
 
 const Toggler = () => {
@@ -40,7 +40,7 @@ if (!Array.isArray(slides) || slides.length <= 0) {
     </div>
     <div className="PageControlCenter">
       <FaArrowAltCircleLeft className="LeftArrow" onClick={prevSlide}/>
-      <div className="PageNumber">Page {current + 1} of {slides.length}</div>
+      <div className="PageNumber">Page {currentPage + 1} of {slides.length}</div>
       <FaArrowAltCircleRight className="RightArrow" onClick={nextSlide}/>
     </div>
     <section className="Slider">
@@ -48,8 +48,8 @@ if (!Array.isArray(slides) || slides.length <= 0) {
       {SliderData.map((slide, index) => {
         return (
           
-          <div className={ index === current ? "SlideActive" : "Slide"} key={index}>
-            { index === current && (<img className={currentToggle === true ? "ComicPages" : "ComicPagesLarge"} src={slide.image} alt="Strange Assassins, short comic."/>)} 
+          <div className={ index === currentPage ? "SlideActive" : "Slide"} key={index}>
+            { index === currentPage && (<img className={currentToggle === true ? "ComicPages" : "ComicPagesLarge"} src={slide.image} alt="Strange Assassins, short comic."/>)} 
           </div>
         ) 
       })}
