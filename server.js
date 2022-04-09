@@ -133,16 +133,32 @@ app.post('/login', (req, res) => {
   )
 })
 
-app.get('/users', (req, res) => {
-  db.query("SELECT * FROM user_info",
+app.post('/publish', (req, res) => {
+  const projectTitle = req.body.project_title;
+
+  db.query(
+    "INSERT INTO user_info (project_title) VALUES (?);",
+    projectTitle,
     (err, result) => {
       if (err) {
-        console.log(err)
+      res.send({err: err});
       } else {
-        res.send(result)
+        res.send({message: "Nice title choice!"});
       }
+    }
+    )
   })
-})
+
+// app.get('/users', (req, res) => {
+//   db.query("SELECT * FROM user_info",
+//     (err, result) => {
+//       if (err) {
+//         console.log(err)
+//       } else {
+//         res.send(result)
+//       }
+//   })
+// })
 
 app.listen('3001', () => {
   console.log('Server started on port 3001');

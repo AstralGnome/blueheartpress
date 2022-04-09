@@ -1,14 +1,14 @@
 import React, { useContext, useEffect } from 'react'
-import './Login.css'
 import { Grid, TextField, Typography } from '@mui/material';
-import SvgButton from '../../components/SvgButton/SvgButton';
 import { Box } from '@mui/system';
 import { Link } from '@mui/material';
 import Button from '@mui/material/Button';
-import 'animate.css';
+import SvgButton from '../../components/SvgButton/SvgButton';
 import { LoginContext } from "../../Helper/Context"
 import { UsernameContext } from "../../Helper/Context"
 import { PasswordContext } from "../../Helper/Context"
+import 'animate.css';
+import './Login.css'
 
 import Axios from 'axios'
 
@@ -37,7 +37,7 @@ function Login() {
         localStorage.setItem('token', response.data.token)
         setLoggedIn(true)
         alert('Login successful.')
-        console.log(password);
+        console.log(response);
       }
       //remove this console log before going into production
     })
