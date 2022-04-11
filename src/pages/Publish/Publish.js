@@ -9,17 +9,12 @@ import Axios from 'axios'
 import "./Publish.css"
 import { useRef } from 'react';
 
-function Publish(props) {
+function Publish() {
 
   const hiddenFileInput = useRef(null)
   
   const chooseFileHandleClick = event => {
     hiddenFileInput.current.click();
-  }
-
-  const handleChange = event => {
-    const fileChosen = event.target.files[0];
-    props.handleFile(fileChosen);
   }
   
   Axios.defaults.withCredentials = true;
@@ -36,7 +31,7 @@ function Publish(props) {
 
   const [imageSelected, setImageSelected] = useState('')
   const [projectTitle, setProjectTitle] = useState('')
-  const [creatorName, setCreatorName] = useState('')
+  // const [creatorName, setCreatorName] = useState('')
 
   const uploadImage = (files) => {
     
