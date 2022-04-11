@@ -10,40 +10,36 @@ import "./Publish.css"
 import { useRef } from 'react';
 
 function Publish() {
+  
+  // Axios.defaults.withCredentials = true;
 
   const hiddenFileInput = useRef(null)
   
-  const chooseFileHandleClick = event => {
+  const chooseFileHandleClick = () => {
     hiddenFileInput.current.click();
   }
-  
-  Axios.defaults.withCredentials = true;
   
   const submitProjectTitle = () => {
     Axios.post("http://localhost:3001/publish", {
       project_title: projectTitle
-    }).then((response) => {
-      if (response.data.message==="Nice title choice!") {
-
-      }
     })
   }
 
   const [imageSelected, setImageSelected] = useState('')
+  const [loading, setLoading] = useState(false)
   const [projectTitle, setProjectTitle] = useState('')
   // const [creatorName, setCreatorName] = useState('')
 
-  const uploadImage = (files) => {
+  const uploadImage = () => {
     
     const formData = new FormData();
-    formData.append("file", imageSelected);
     formData.append("upload_preset", "xhpu1wfy");
+    formData.append("file", imageSelected);
   
-    Axios.post("https://api.cloudinary.com/v1_1/astralgnome/image/upload",
+    Axios.post('https://api.cloudinary.com/v1_1/astralgnome/image/upload',
     formData
-    ).then((response) => {
-      console.log(response)
-    })
+    ).then(res => setImageSelected(res.data.secure_url))
+      .then(err => console.log(err))
   };
 
   // const [pubId, setPubId] = useState("")
@@ -234,9 +230,9 @@ function Publish() {
         </IconButton>
 
         <Image 
-          style={{width:28, height:28}}
+          style={{width:65}}
           cloudName="astralgnome" 
-          publicId="https://res.cloudinary.com/astralgnome/image/upload/v1649659334/lh46hyctwa1yvgv3ze85.jpg"
+          publicId="https://res.cloudinary.com/astralgnome/image/upload/v1649700702/ngbbbriawov6phxxnjbr.jpg"
         /> 
       
       </Grid>
