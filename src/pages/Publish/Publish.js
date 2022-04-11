@@ -12,8 +12,9 @@ import { useRef } from 'react';
 function Publish() {
   
   // Axios.defaults.withCredentials = true;
-
+  
   const hiddenFileInput = useRef(null)
+  const textInput       = useRef(null)
   
   const chooseFileHandleClick = () => {
     hiddenFileInput.current.click();
@@ -26,9 +27,9 @@ function Publish() {
   }
 
   const [imageSelected, setImageSelected] = useState('')
-  const [loading, setLoading] = useState(false)
-  const [projectTitle, setProjectTitle] = useState('')
-  // const [creatorName, setCreatorName] = useState('')
+  // const [loading, setLoading]          = useState(false)
+  const [projectTitle, setProjectTitle]   = useState('')
+  // const [creatorName, setCreatorName]  = useState('')
 
   const uploadImage = () => {
     
@@ -44,7 +45,6 @@ function Publish() {
 
   // const [pubId, setPubId] = useState("")
 
-  const textInput = useRef(null)
 
   return (
 
@@ -220,6 +220,12 @@ function Publish() {
       justifyContent="center"
       item xs={12}> 
         
+        <Image 
+          style={{width:65}}
+          cloudName="astralgnome" 
+          publicId="https://res.cloudinary.com/astralgnome/image/upload/v1649700702/ngbbbriawov6phxxnjbr.jpg"
+        /> 
+
         <IconButton 
           aria-label="delete" 
           // disabled 
@@ -228,12 +234,6 @@ function Publish() {
           >   
           <DeleteIcon />
         </IconButton>
-
-        <Image 
-          style={{width:65}}
-          cloudName="astralgnome" 
-          publicId="https://res.cloudinary.com/astralgnome/image/upload/v1649700702/ngbbbriawov6phxxnjbr.jpg"
-        /> 
       
       </Grid>
 
