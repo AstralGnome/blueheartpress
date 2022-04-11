@@ -7,8 +7,20 @@ import { useState } from 'react';
 import {Image} from 'cloudinary-react'
 import Axios from 'axios'
 import "./Publish.css"
+import { useRef } from 'react';
 
-function Publish() {
+function Publish(props) {
+
+  const hiddenFileInput = useRef(null)
+  
+  const chooseFileHandleClick = event => {
+    hiddenFileInput.current.click();
+  }
+
+  const handleChange = event => {
+    const fileChosen = event.target.files[0];
+    props.handleFile(fileChosen);
+  }
   
   Axios.defaults.withCredentials = true;
   
@@ -40,6 +52,8 @@ function Publish() {
   };
 
   // const [pubId, setPubId] = useState("")
+
+  const textInput = useRef(null)
 
   return (
 
@@ -79,6 +93,7 @@ function Publish() {
             size="small"
             variant="outlined"
             required
+            inputRef={textInput}
             // fullWidth
             onChange={(event) => {
               setProjectTitle(event.target.value)
@@ -86,9 +101,15 @@ function Publish() {
         />
 
         <Button 
-          style={{marginLeft:10}}
-          onClick={submitProjectTitle}
           variant="outlined"
+          style={{
+            marginLeft:10
+            }}
+          onClick={ () => {
+            submitProjectTitle();
+            console.log('hit');
+            textInput.current.value='';
+            }}
         >
           Submit      
         </Button>
@@ -167,16 +188,29 @@ function Publish() {
       alignItems="center"
       justifyContent="center"
       item xs={12}> 
+        
+        <Button
+          onClick={chooseFileHandleClick}
+          variant="outlined">
+          Choose file
+        </Button>
 
-        <TextField 
-          style={{marginRight:10, width:253}}
+        <input 
+          style={{marginRight:10, width:253, display: "none"}}
           size="small"
-          display="none"
           type="file"
+          ref={hiddenFileInput}
           onChange={(event) => {
             setImageSelected(event.target.files[0]) ;
           }}
         />
+
+        <Typography
+          noWrap
+          style={{paddingLeft:5, paddingRight:5, color: "white", width:120, overflow:"hidden"}}
+          >{imageSelected.name ?? `No file chosen...`}
+
+        </Typography>
 
         <Button 
           onClick={uploadImage}
@@ -199,7 +233,7 @@ function Publish() {
           aria-label="delete" 
           // disabled 
           style={{opacity:"100%"}}  
-          onClick={console.log(imageSelected)}
+          onClick={console.log(imageSelected.name)}
           >   
           <DeleteIcon />
         </IconButton>
@@ -207,7 +241,7 @@ function Publish() {
         <Image 
           style={{width:28, height:28}}
           cloudName="astralgnome" 
-          publicId="https://res.cloudinary.com/astralgnome/image/upload/v1649278239/vwyhzqdsi4ggdhxkkpok.jpg"
+          publicId="https://res.cloudinary.com/astralgnome/image/upload/v1649659334/lh46hyctwa1yvgv3ze85.jpg"
         /> 
       
       </Grid>
