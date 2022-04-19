@@ -16,6 +16,7 @@ import Publish from "./pages/Publish/Publish";
 import { LoginContext } from './Helper/Context'
 import { UsernameContext } from './Helper/Context'
 import { PasswordContext } from './Helper/Context'
+import { UserIdContext } from './Helper/Context'
 
 
 const darkTheme = createTheme({
@@ -29,8 +30,10 @@ function App() {
   const [loggedIn, setLoggedIn]   = useState(false);
   const [ username, setUsername ] = useState('')
   const [ password, setPassword ] = useState('')
+  const [ userId, setUserId ]     = useState('')
 
   return (
+  <UserIdContext.Provider value={{userId, setUserId}}>
   <UsernameContext.Provider value={{username, setUsername}}>
   <LoginContext.Provider value={{loggedIn, setLoggedIn}}>
   <PasswordContext.Provider value={{password, setPassword}}>
@@ -54,6 +57,7 @@ function App() {
   </PasswordContext.Provider>
   </LoginContext.Provider>
   </UsernameContext.Provider>
+  </UserIdContext.Provider>
   );
 }
 

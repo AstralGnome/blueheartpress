@@ -135,7 +135,7 @@ app.post('/login', (req, res) => {
 
 app.post('/publish', (req, res) => {
   const projectTitle = req.body.project_title;
-  // const userId       = 4;
+  const userId = req.body.id_user;
 
   db.query(
     "INSERT INTO project (project_title, id_user) VALUES (?, ?);",

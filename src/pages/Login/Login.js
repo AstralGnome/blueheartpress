@@ -7,6 +7,7 @@ import SvgButton from '../../components/SvgButton/SvgButton';
 import { LoginContext } from "../../Helper/Context"
 import { UsernameContext } from "../../Helper/Context"
 import { PasswordContext } from "../../Helper/Context"
+import { UserIdContext } from "../../Helper/Context"
 import 'animate.css';
 import './Login.css'
 
@@ -15,9 +16,10 @@ import Axios from 'axios'
 function Login() {
 
   const { username, setUsername } = useContext(UsernameContext);
-  //probably should not be using the password context here, or anywhere.
+  //probably should not be using the password context here, or anywhere???
   const { password, setPassword } = useContext(PasswordContext);
   const { loggedIn, setLoggedIn } = useContext(LoginContext);
+  const { setUserId }             = useContext(UserIdContext);
   
   Axios.defaults.withCredentials = true;
   
@@ -35,10 +37,11 @@ function Login() {
         alert(response.data.message)
         setLoggedIn(false)
       } else {
-        localStorage.setItem('token', response.data.token)
-        sessionStorage.setItem('userId', response.data.result[0].id)
-        setLoggedIn(true)
-        alert('Login successful.')
+        localStorage.setItem('token', response.data.token);
+        sessionStorage.setItem('userId', response.data.result[0].id);
+        setLoggedIn(true);
+        setUserId(response.data.result[0].id);
+        alert('Login successful.');
         console.log('ID', sessionStorage.getItem('userId'));
       }
       //remove this console log before going into production

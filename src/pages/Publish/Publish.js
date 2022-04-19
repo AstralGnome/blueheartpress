@@ -11,7 +11,8 @@ import { useRef } from 'react';
 // import { LoginContext } from "../../Helper/Context"
 // import { UsernameContext } from "../../Helper/Context"
 // import { PasswordContext } from "../../Helper/Context"
-// import { useContext } from 'react';
+import { useContext } from 'react';
+import { UserIdContext } from '../../Helper/Context';
 
 function Publish() {
   
@@ -23,6 +24,7 @@ function Publish() {
   // const { username } = useContext(UsernameContext);
   // const { password } = useContext(PasswordContext);
   // const { loggedIn, setLoggedIn } = useContext(LoginContext);
+  const { userId } = useContext(UserIdContext)
 
   const [projectTitle, setProjectTitle]   = useState('')
   const [imageSelected, setImageSelected] = useState('')
@@ -33,6 +35,7 @@ function Publish() {
   
   const submitProjectTitle = () => {
     Axios.post("http://localhost:3001/publish", {
+      id_user: userId,
       project_title: projectTitle
     }).then(response => console.log('PT Posting data', response)) 
       .catch(err => console.log(err))
@@ -107,7 +110,7 @@ function Publish() {
             }}
           onClick={ (event) => {
             submitProjectTitle();
-            console.log(projectTitle);
+            console.log(projectTitle, userId);
             // textInput.current.value='';
             }}
         >
