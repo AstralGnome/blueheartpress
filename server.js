@@ -12,7 +12,7 @@ const saltRounds    = 10
 
 const jwt           = require('jsonwebtoken')
 
-const allowedOrigins = require('./config/allowedOrigins')
+const allowedOrigins = require('./config/allowedOrigins');
 
 require('dotenv').config(); 
 
@@ -93,7 +93,7 @@ app.get('/isUserAuth', verifyJWT, (req, res) => {
 
 app.get('/login', (req, res) => {
   if (req.session.user) {
-    res.send({loggedIn: true, user: req.session.user});
+    res.send({loggedIn: true, user: req.session.user})
   } else {
     res.send({loggedIn: false});
   }
@@ -117,7 +117,7 @@ app.post('/login', (req, res) => {
             
             const id = result[0].id
             const token = jwt.sign({id}, process.env.JWT_SECRET, {
-              expiresIn: 300,
+              expiresIn:  60 * 60 * 24 * 1000,
             })
             req.session.user = result;
 
@@ -135,13 +135,14 @@ app.post('/login', (req, res) => {
 
 app.post('/publish', (req, res) => {
   const projectTitle = req.body.project_title;
+  // const userId       = 4;
 
   db.query(
-    "INSERT INTO user_info (project_title) VALUES (?);",
-    projectTitle,
+    "INSERT INTO project (project_title, id_user) VALUES (?, ?);",
+    [projectTitle, userId],
     (err, result) => {
       if (err) {
-      res.send({err: err});
+        throw err;
       } else {
         res.send({message: "Nice title choice!"});
       }

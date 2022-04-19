@@ -15,6 +15,7 @@ import Axios from 'axios'
 function Login() {
 
   const { username, setUsername } = useContext(UsernameContext);
+  //probably should not be using the password context here, or anywhere.
   const { password, setPassword } = useContext(PasswordContext);
   const { loggedIn, setLoggedIn } = useContext(LoginContext);
   
@@ -35,9 +36,10 @@ function Login() {
         setLoggedIn(false)
       } else {
         localStorage.setItem('token', response.data.token)
+        sessionStorage.setItem('userId', response.data.result[0].id)
         setLoggedIn(true)
         alert('Login successful.')
-        console.log(response);
+        console.log('ID', sessionStorage.getItem('userId'));
       }
       //remove this console log before going into production
     })
@@ -51,16 +53,17 @@ function Login() {
   })
 
 
-  //Can add this to the Submit button in order to verify Auth.
-  // const userAuthenticated = () => {
-  //   Axios.get("http://localhost:3001/isUserAuth", {
-  //     headers: {
-  //       'x-access-token': localStorage.getItem('token'),
-  //   },
-  // }).then((response) => {
-  //     console.log(response)
-  //   })
-  // }
+  // Can add this to the Submit button in order to verify Auth.
+  const userAuthenticated = () => {
+    Axios.get("http://localhost:3001/isUserAuth", {
+      headers: {
+        'x-access-token': localStorage.getItem('token'),
+    },
+  }).then((response) => {
+      console.log(response)
+      console.log('ID???', localStorage.getItem('userId'))
+    })
+  }
   
   return (
     <Grid style={{
@@ -121,7 +124,7 @@ function Login() {
           paddingBottom: 10
           }}>
         <Button
-          onClick={login}
+          onClick={() => {userAuthenticated(); login()}}
         >
           <SvgButton>Submit</SvgButton>
         </Button>

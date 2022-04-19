@@ -8,13 +8,24 @@ import {Image} from 'cloudinary-react'
 import Axios from 'axios'
 import "./Publish.css"
 import { useRef } from 'react';
+// import { LoginContext } from "../../Helper/Context"
+// import { UsernameContext } from "../../Helper/Context"
+// import { PasswordContext } from "../../Helper/Context"
+// import { useContext } from 'react';
 
 function Publish() {
   
-  // Axios.defaults.withCredentials = true;
+  // Axios.defaults.withCredentials = 'true';
   
   const hiddenFileInput = useRef(null)
   const textInput       = useRef(null)
+
+  // const { username } = useContext(UsernameContext);
+  // const { password } = useContext(PasswordContext);
+  // const { loggedIn, setLoggedIn } = useContext(LoginContext);
+
+  const [projectTitle, setProjectTitle]   = useState('')
+  const [imageSelected, setImageSelected] = useState('')
   
   const chooseFileHandleClick = () => {
     hiddenFileInput.current.click();
@@ -23,12 +34,11 @@ function Publish() {
   const submitProjectTitle = () => {
     Axios.post("http://localhost:3001/publish", {
       project_title: projectTitle
-    })
+    }).then(response => console.log('PT Posting data', response)) 
+      .catch(err => console.log(err))
   }
 
-  const [imageSelected, setImageSelected] = useState('')
   // const [loading, setLoading]          = useState(false)
-  const [projectTitle, setProjectTitle]   = useState('')
   // const [creatorName, setCreatorName]  = useState('')
 
   const uploadImage = () => {
@@ -39,7 +49,7 @@ function Publish() {
   
     Axios.post('https://api.cloudinary.com/v1_1/astralgnome/image/upload',
     formData
-    ).then(res => setImageSelected(res.data.secure_url))
+    ).then(res => setImageSelected(res.data._url))
       .then(err => console.log(err))
   };
 
@@ -47,7 +57,6 @@ function Publish() {
 
 
   return (
-
     //Upload Component
   <Grid 
     container
@@ -87,7 +96,7 @@ function Publish() {
             inputRef={textInput}
             // fullWidth
             onChange={(event) => {
-              setProjectTitle(event.target.value)
+              setProjectTitle(event.target.value);
             }}
         />
 
@@ -96,10 +105,10 @@ function Publish() {
           style={{
             marginLeft:10
             }}
-          onClick={ () => {
+          onClick={ (event) => {
             submitProjectTitle();
-            console.log('hit');
-            textInput.current.value='';
+            console.log(projectTitle);
+            // textInput.current.value='';
             }}
         >
           Submit      
@@ -117,7 +126,6 @@ function Publish() {
         <Typography
           style={{
           color: 'lightgrey',
-          paddingBottom: 15,
           }}
             variant="body1"
           >
@@ -207,18 +215,30 @@ function Publish() {
           onClick={uploadImage}
           variant="outlined"
         >
-          Upload      
+          Submit      
         </Button>
 
       </Grid>
       
       <Grid 
+      style={{paddingTop: 15}}
       container
       spacing={0}
       direction="row"
       alignItems="center"
       justifyContent="center"
-      item xs={12}> 
+      item xs={12}>
+
+        <Typography
+          noWrap
+          style={{
+            width:255, 
+            color:"white", 
+            paddingRight:5, 
+            paddingLeft:10
+            }}
+        >Name of file
+        </Typography>
         
         <Image 
           style={{width:65}}
