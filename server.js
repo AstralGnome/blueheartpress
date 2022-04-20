@@ -80,7 +80,7 @@ const verifyJWT = (req, res, next) => {
       if (err) {
         res.send({auth: false, message: 'You did not authenticate.'})
       } else {
-        req.userID = decoded.id;
+        req.userID = decoded.id_user;
         next();
       }
     })
@@ -115,7 +115,7 @@ app.post('/login', (req, res) => {
         bcrypt.compare(password, result[0].password, (error, response) => {
           if (response) {
             
-            const id = result[0].id
+            const id = result[0].id_user
             const token = jwt.sign({id}, process.env.JWT_SECRET, {
               expiresIn:  60 * 60 * 24 * 1000,
             })
@@ -135,10 +135,22 @@ app.post('/login', (req, res) => {
 
 app.post('/publish', (req, res) => {
   const projectTitle = req.body.project_title;
-  const userId = req.body.id_user;
+  const projectCreator = req.body.project_creator;
+  const userId = req.body.id_user_project;
 
   db.query(
-    "INSERT INTO project (project_title, id_user) VALUES (?, ?);",
+    "INSERT INTO project (project_title, id_user_project) VALUES (?, ?);",
+    [projectTitle, userId],
+    (err, result) => {
+      if (err) {
+        throw err;
+      } else {
+        res.send({message: "Nice title choice!"});
+      }
+    }
+    )
+  db.query(
+    "INSERT INTO project (project_title, id_user_project) VALUES (?, ?);",
     [projectTitle, userId],
     (err, result) => {
       if (err) {

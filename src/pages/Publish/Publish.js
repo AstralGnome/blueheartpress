@@ -35,11 +35,20 @@ function Publish() {
   
   const submitProjectTitle = () => {
     Axios.post("http://localhost:3001/publish", {
-      id_user: userId,
-      project_title: projectTitle
+      id_user_project: userId,
+      project_title: projectTitle,
+      // project_creator: projectCreator
     }).then(response => console.log('PT Posting data', response)) 
       .catch(err => console.log(err))
   }
+  // const submitProjectCreatorOne = () => {
+  //   Axios.post("http://localhost:3001/publish", {
+  //     id_user_project: userId,
+  //     project_title: projectTitle,
+  //     project_creator: projectCreator
+  //   }).then(response => console.log('PT Posting data', response)) 
+  //     .catch(err => console.log(err))
+  // }
 
   // const [loading, setLoading]          = useState(false)
   // const [creatorName, setCreatorName]  = useState('')
@@ -110,7 +119,6 @@ function Publish() {
             }}
           onClick={ (event) => {
             submitProjectTitle();
-            console.log(projectTitle, userId);
             // textInput.current.value='';
             }}
         >

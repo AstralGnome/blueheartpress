@@ -38,9 +38,9 @@ function Login() {
         setLoggedIn(false)
       } else {
         localStorage.setItem('token', response.data.token);
-        sessionStorage.setItem('userId', response.data.result[0].id);
+        sessionStorage.setItem('userId', response.data.result[0].id_user);
         setLoggedIn(true);
-        setUserId(response.data.result[0].id);
+        setUserId(response.data.result[0].id_user);
         alert('Login successful.');
         console.log('ID', sessionStorage.getItem('userId'));
       }
