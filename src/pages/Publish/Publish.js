@@ -2,32 +2,34 @@
 import { Grid, Button, IconButton, Typography, TextField, Divider } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 // import AddIcon from '@mui/icons-material/Add';
-// import CheckIcon from '@mui/icons-material/Check';
+import CheckIcon from '@mui/icons-material/Check';
 import { useState } from 'react';
 import {Image} from 'cloudinary-react'
 import Axios from 'axios'
 import "./Publish.css"
 import { useRef } from 'react';
-// import { LoginContext } from "../../Helper/Context"
-// import { UsernameContext } from "../../Helper/Context"
-// import { PasswordContext } from "../../Helper/Context"
+
 import { useContext } from 'react';
-import { UserIdContext } from '../../Helper/Context';
+import {
+  UserIdContext,
+  ProjectTitleContext,
+  CreatorNameContext,
+  } from '../../Helper/Context';
 
 function Publish() {
-  
-  // Axios.defaults.withCredentials = 'true';
   
   const hiddenFileInput = useRef(null)
   const textInput       = useRef(null)
 
-  // const { username } = useContext(UsernameContext);
-  // const { password } = useContext(PasswordContext);
-  // const { loggedIn, setLoggedIn } = useContext(LoginContext);
-  const { userId } = useContext(UserIdContext)
+  // const { username }      = useContext(UsernameContext);
+  // const { password }      = useContext(PasswordContext);
+  // const { loggedIn }      = useContext(LoginContext);
+  const { userId }                         = useContext(UserIdContext);
+  const { projectTitle, setProjectTitle }  = useContext(ProjectTitleContext);
+  const { creatorName, setCreatorName}     = useContext(CreatorNameContext);
 
-  const [projectTitle, setProjectTitle]   = useState('')
-  const [imageSelected, setImageSelected] = useState('')
+  const [imageSelected, setImageSelected] = useState('');
+  const [textFieldOne, setTextFieldOne]   = useState(false);
   
   const chooseFileHandleClick = () => {
     hiddenFileInput.current.click();
@@ -37,7 +39,7 @@ function Publish() {
     Axios.post("http://localhost:3001/publish", {
       id_user_project: userId,
       project_title: projectTitle,
-      // project_creator: projectCreator
+      project_creator: creatorName
     }).then(response => console.log('PT Posting data', response)) 
       .catch(err => console.log(err))
   }
@@ -90,7 +92,6 @@ function Publish() {
             // className="animate__animated animate__fadeInDown"
             >Project Title
         </Typography>
-
       </Grid>
 
       <Grid
@@ -98,33 +99,34 @@ function Publish() {
         justifyContent="center"
         alignItems="center"
         item xs={12}> 
-
         <TextField
             // label="username"
+            disabled = {textFieldOne}
             style={{width: 250}}
             size="small"
+            color={textFieldOne ? "success" : ""}
             variant="outlined"
             required
             inputRef={textInput}
             // fullWidth
+            // Could use the UseRef hook here to set it all at once?
             onChange={(event) => {
               setProjectTitle(event.target.value);
             }}
         />
 
-        <Button 
-          variant="outlined"
-          style={{
-            marginLeft:10
-            }}
-          onClick={ (event) => {
+        <IconButton
+            onClick={ () => {
             submitProjectTitle();
+            setTextFieldOne(!textFieldOne);
             // textInput.current.value='';
             }}
-        >
-          Submit      
-        </Button>
-
+          aria-label="check" 
+          // disabled 
+          style={{opacity:"100%"}}  
+          >   
+          <CheckIcon />
+        </IconButton>
       </Grid>
 
       <Grid

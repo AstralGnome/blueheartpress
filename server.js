@@ -135,23 +135,12 @@ app.post('/login', (req, res) => {
 
 app.post('/publish', (req, res) => {
   const projectTitle = req.body.project_title;
-  const projectCreator = req.body.project_creator;
   const userId = req.body.id_user_project;
+  const creatorName = req.body.project_creator;
 
   db.query(
-    "INSERT INTO project (project_title, id_user_project) VALUES (?, ?);",
-    [projectTitle, userId],
-    (err, result) => {
-      if (err) {
-        throw err;
-      } else {
-        res.send({message: "Nice title choice!"});
-      }
-    }
-    )
-  db.query(
-    "INSERT INTO project (project_title, id_user_project) VALUES (?, ?);",
-    [projectTitle, userId],
+    "INSERT INTO project (project_title, id_user_project, project_creator) VALUES (?, ?, ?);",
+    [projectTitle, userId, creatorName],
     (err, result) => {
       if (err) {
         throw err;

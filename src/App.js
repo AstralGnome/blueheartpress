@@ -13,10 +13,14 @@ import ContentDisplay from "./pages/ContentDisplay/ContentDisplay";
 import CreateAccount from "./pages/CreateAccount/CreateAccount";
 import Publish from "./pages/Publish/Publish";
 
-import { LoginContext } from './Helper/Context'
-import { UsernameContext } from './Helper/Context'
-import { PasswordContext } from './Helper/Context'
-import { UserIdContext } from './Helper/Context'
+import { 
+  LoginContext,
+  UserIdContext,
+  UsernameContext,
+  PasswordContext,
+  ProjectTitleContext,
+  CreatorNameContext,
+  } from './Helper/Context'
 
 
 const darkTheme = createTheme({
@@ -27,12 +31,14 @@ const darkTheme = createTheme({
 
 function App() {
   
-  const [loggedIn, setLoggedIn]   = useState(false);
-  const [ username, setUsername ] = useState('')
-  const [ password, setPassword ] = useState('')
-  const [ userId, setUserId ]     = useState('')
+  const [ loggedIn, setLoggedIn ]             = useState(false);
+  const [ username, setUsername ]             = useState('')
+  const [ password, setPassword ]             = useState('')
+  const [ userId, setUserId ]                 = useState('')
+  const [ projectTitle, setProjectTitle ]     = useState('')
 
   return (
+  <ProjectTitleContext.Provider value={{projectTitle, setProjectTitle}}>
   <UserIdContext.Provider value={{userId, setUserId}}>
   <UsernameContext.Provider value={{username, setUsername}}>
   <LoginContext.Provider value={{loggedIn, setLoggedIn}}>
@@ -58,6 +64,7 @@ function App() {
   </LoginContext.Provider>
   </UsernameContext.Provider>
   </UserIdContext.Provider>
+  </ProjectTitleContext.Provider>
   );
 }
 
