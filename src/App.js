@@ -20,6 +20,7 @@ import {
   PasswordContext,
   ProjectTitleContext,
   CreatorNameContext,
+  ProjectSummaryContext
   } from './Helper/Context'
 
 
@@ -36,8 +37,13 @@ function App() {
   const [ password, setPassword ]             = useState('')
   const [ userId, setUserId ]                 = useState('')
   const [ projectTitle, setProjectTitle ]     = useState('')
+  const [ projectSummary, setProjectSummary ] = useState('')
+  const [ creatorName, setCreatorName ]       = useState('')
+  // const [ cloudinaryUrl, setCloudinaryUrl ]   = useState([])
 
   return (
+  <ProjectSummaryContext.Provider value={{projectSummary, setProjectSummary}}>
+  <CreatorNameContext.Provider value={{creatorName, setCreatorName}}>
   <ProjectTitleContext.Provider value={{projectTitle, setProjectTitle}}>
   <UserIdContext.Provider value={{userId, setUserId}}>
   <UsernameContext.Provider value={{username, setUsername}}>
@@ -65,6 +71,8 @@ function App() {
   </UsernameContext.Provider>
   </UserIdContext.Provider>
   </ProjectTitleContext.Provider>
+  </CreatorNameContext.Provider>
+  </ProjectSummaryContext.Provider>
   );
 }
 

@@ -137,10 +137,11 @@ app.post('/publish', (req, res) => {
   const projectTitle = req.body.project_title;
   const userId = req.body.id_user_project;
   const creatorName = req.body.project_creator;
+  const projectSummary = req.body.project_summary;
 
   db.query(
-    "INSERT INTO project (project_title, id_user_project, project_creator) VALUES (?, ?, ?);",
-    [projectTitle, userId, creatorName],
+    "INSERT INTO project (project_title, id_user_project, project_creator, project_summary) VALUES (?, ?, ?, ?);",
+    [projectTitle, userId, creatorName, projectSummary],
     (err, result) => {
       if (err) {
         throw err;

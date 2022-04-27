@@ -2,7 +2,7 @@
 import { Grid, Button, IconButton, Typography, TextField, Divider } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 // import AddIcon from '@mui/icons-material/Add';
-import CheckIcon from '@mui/icons-material/Check';
+// import CheckIcon from '@mui/icons-material/Check';
 import { useState } from 'react';
 import {Image} from 'cloudinary-react'
 import Axios from 'axios'
@@ -14,6 +14,7 @@ import {
   UserIdContext,
   ProjectTitleContext,
   CreatorNameContext,
+  ProjectSummaryContext
   } from '../../Helper/Context';
 
 function Publish() {
@@ -26,20 +27,21 @@ function Publish() {
   // const { loggedIn }      = useContext(LoginContext);
   const { userId }                         = useContext(UserIdContext);
   const { projectTitle, setProjectTitle }  = useContext(ProjectTitleContext);
+  const { projectSummary, setProjectSummary }  = useContext(ProjectSummaryContext);
   const { creatorName, setCreatorName}     = useContext(CreatorNameContext);
 
-  const [imageSelected, setImageSelected] = useState('');
-  const [textFieldOne, setTextFieldOne]   = useState(false);
+  const [imageSelected, setImageSelected]  = useState('');
   
   const chooseFileHandleClick = () => {
     hiddenFileInput.current.click();
   }
   
-  const submitProjectTitle = () => {
+  const submitProject = () => {
     Axios.post("http://localhost:3001/publish", {
+      project_title:   projectTitle,
       id_user_project: userId,
-      project_title: projectTitle,
-      project_creator: creatorName
+      project_creator: creatorName,
+      project_summary: projectSummary
     }).then(response => console.log('PT Posting data', response)) 
       .catch(err => console.log(err))
   }
@@ -101,10 +103,8 @@ function Publish() {
         item xs={12}> 
         <TextField
             // label="username"
-            disabled = {textFieldOne}
-            style={{width: 250}}
+            style={{width: 350}}
             size="small"
-            color={textFieldOne ? "success" : ""}
             variant="outlined"
             required
             inputRef={textInput}
@@ -114,19 +114,6 @@ function Publish() {
               setProjectTitle(event.target.value);
             }}
         />
-
-        <IconButton
-            onClick={ () => {
-            submitProjectTitle();
-            setTextFieldOne(!textFieldOne);
-            // textInput.current.value='';
-            }}
-          aria-label="check" 
-          // disabled 
-          style={{opacity:"100%"}}  
-          >   
-          <CheckIcon />
-        </IconButton>
       </Grid>
 
       <Grid
@@ -136,14 +123,14 @@ function Publish() {
         item xs={12}> 
       </Grid>
 
-        <Typography
+        {/* <Typography
           style={{
           color: 'lightgrey',
           }}
             variant="body1"
           >
-          {projectTitle}
-        </Typography>
+          {projectTitle} */}
+        {/* </Typography> */}
 
       <Grid
         style={{paddingTop: 30}} 
@@ -155,7 +142,7 @@ function Publish() {
             paddingBottom: 15,
             }}
               variant="body1"
-              >Creator
+              >{"Creator(s)"}
           </Typography>
         </Grid>
       <Grid 
@@ -164,21 +151,58 @@ function Publish() {
         alignItems="center"
         item xs={12}>  
         <TextField 
-            style={{width: 250}}
+            style={{width: 350}}
             size="small"
             variant="outlined"
             required
+            onChange={(event) => {
+              setCreatorName(event.target.value);
+            }}
             />
-        <Button
+      </Grid>
+      
+      <Divider/>
+
+      <Grid
+        style={{paddingTop: 30}} 
+        justifyContent="center"
+        item xs={12}> 
+          <Typography 
+            style={{
+            color: 'lightgrey',
+            paddingBottom: 15,
+            }}
+              variant="body1"
+              >Project Summary
+          </Typography>
+        </Grid>
+      <Grid 
+        container
+        justifyContent="center"
+        alignItems="center"
+        item xs={12}>  
+        <TextField 
+            multiline
+            rows={4}
+            style={{width: 350}}
+            size="small"
+            variant="outlined"
+            required
+            onChange={(event) => {
+              setProjectSummary(event.target.value);
+            }}
+            />
+            <Button
+            onClick={ () => {
+            submitProject();
+            // textInput.current.value='';
+            }}
           style={{marginLeft:10}}
-          // onClick={uploadCreator}
           variant="outlined"
         >
           Submit
         </Button>
       </Grid>
-      
-      <Divider/>
 
       <Grid item xs={12}> 
         <Typography 
