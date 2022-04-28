@@ -3,14 +3,14 @@ const app           = express();
 const db            = require('./dbfiles/dbConfig');
 const cors          = require('cors')
 
-const bodyParser    = require('body-parser');
-const cookieParser  = require('cookie-parser');
-const session       = require('express-session');
+const bodyParser     = require('body-parser');
+const cookieParser   = require('cookie-parser');
+const session        = require('express-session');
 
-const bcrypt        = require('bcrypt')
-const saltRounds    = 10
+const bcrypt         = require('bcrypt')
+const saltRounds     = 10
 
-const jwt           = require('jsonwebtoken')
+const jwt            = require('jsonwebtoken')
 
 const allowedOrigins = require('./config/allowedOrigins');
 
@@ -134,9 +134,9 @@ app.post('/login', (req, res) => {
 })
 
 app.post('/publish', (req, res) => {
-  const projectTitle = req.body.project_title;
-  const userId = req.body.id_user_project;
-  const creatorName = req.body.project_creator;
+  const projectTitle   = req.body.project_title;
+  const userId         = req.body.id_user_project;
+  const creatorName    = req.body.project_creator;
   const projectSummary = req.body.project_summary;
 
   db.query(

@@ -3,7 +3,6 @@ import { Grid, Button, IconButton, Typography, TextField, Divider } from '@mui/m
 import DeleteIcon from '@mui/icons-material/Delete';
 // import AddIcon from '@mui/icons-material/Add';
 // import CheckIcon from '@mui/icons-material/Check';
-import { useState } from 'react';
 import {Image} from 'cloudinary-react'
 import Axios from 'axios'
 import "./Publish.css"
@@ -14,28 +13,26 @@ import {
   UserIdContext,
   ProjectTitleContext,
   CreatorNameContext,
-  ProjectSummaryContext
+  ProjectSummaryContext,
+  CloudinaryUrlContext
   } from '../../Helper/Context';
+
+
 
 function Publish() {
   
   const hiddenFileInput = useRef(null)
-  const textInput       = useRef(null)
 
-  // const { username }      = useContext(UsernameContext);
-  // const { password }      = useContext(PasswordContext);
-  // const { loggedIn }      = useContext(LoginContext);
-  const { userId }                         = useContext(UserIdContext);
-  const { projectTitle, setProjectTitle }  = useContext(ProjectTitleContext);
+  const { userId }                             = useContext(UserIdContext);
+  const { projectTitle, setProjectTitle }      = useContext(ProjectTitleContext);
   const { projectSummary, setProjectSummary }  = useContext(ProjectSummaryContext);
-  const { creatorName, setCreatorName}     = useContext(CreatorNameContext);
+  const { cloudinaryUrl, setCloudinaryUrl }    = useContext(CloudinaryUrlContext);
+  const { creatorName, setCreatorName}         = useContext(CreatorNameContext);
 
-  const [imageSelected, setImageSelected]  = useState('');
-  
   const chooseFileHandleClick = () => {
     hiddenFileInput.current.click();
   }
-  
+
   const submitProject = () => {
     Axios.post("http://localhost:3001/publish", {
       project_title:   projectTitle,
@@ -45,35 +42,20 @@ function Publish() {
     }).then(response => console.log('PT Posting data', response)) 
       .catch(err => console.log(err))
   }
-  // const submitProjectCreatorOne = () => {
-  //   Axios.post("http://localhost:3001/publish", {
-  //     id_user_project: userId,
-  //     project_title: projectTitle,
-  //     project_creator: projectCreator
-  //   }).then(response => console.log('PT Posting data', response)) 
-  //     .catch(err => console.log(err))
-  // }
-
-  // const [loading, setLoading]          = useState(false)
-  // const [creatorName, setCreatorName]  = useState('')
 
   const uploadImage = () => {
     
     const formData = new FormData();
     formData.append("upload_preset", "xhpu1wfy");
-    formData.append("file", imageSelected);
+    formData.append("file", cloudinaryUrl);
   
     Axios.post('https://api.cloudinary.com/v1_1/astralgnome/image/upload',
     formData
-    ).then(res => setImageSelected(res.data._url))
+    ).then(res => setCloudinaryUrl(res.data._url))
       .then(err => console.log(err))
   };
 
-  // const [pubId, setPubId] = useState("")
-
-
   return (
-    //Upload Component
   <Grid 
     container
     spacing={0}
@@ -107,9 +89,7 @@ function Publish() {
             size="small"
             variant="outlined"
             required
-            inputRef={textInput}
             // fullWidth
-            // Could use the UseRef hook here to set it all at once?
             onChange={(event) => {
               setProjectTitle(event.target.value);
             }}
@@ -122,15 +102,6 @@ function Publish() {
         alignItems="center"
         item xs={12}> 
       </Grid>
-
-        {/* <Typography
-          style={{
-          color: 'lightgrey',
-          }}
-            variant="body1"
-          >
-          {projectTitle} */}
-        {/* </Typography> */}
 
       <Grid
         style={{paddingTop: 30}} 
@@ -156,9 +127,19 @@ function Publish() {
             variant="outlined"
             required
             onChange={(event) => {
-              setCreatorName(event.target.value);
+              setCreatorName(event.target.value)
             }}
             />
+            <Button
+        onClick={() => {
+        // textInput.current.value='';
+        }}
+          style={{marginLeft:10}}
+          variant="outlined"
+        >
+          Submit
+        </Button>
+
       </Grid>
       
       <Divider/>
@@ -173,7 +154,7 @@ function Publish() {
             paddingBottom: 15,
             }}
               variant="body1"
-              >Project Summary
+            >Project Summary
           </Typography>
         </Grid>
       <Grid 
@@ -191,12 +172,12 @@ function Publish() {
             onChange={(event) => {
               setProjectSummary(event.target.value);
             }}
-            />
-            <Button
-            onClick={ () => {
-            submitProject();
-            // textInput.current.value='';
-            }}
+        />
+        <Button
+        onClick={ () => {
+        submitProject();
+        // textInput.current.value='';
+        }}
           style={{marginLeft:10}}
           variant="outlined"
         >
@@ -237,14 +218,14 @@ function Publish() {
           type="file"
           ref={hiddenFileInput}
           onChange={(event) => {
-            setImageSelected(event.target.files[0]) ;
+            setCloudinaryUrl(event.target.files[0]);
           }}
         />
 
         <Typography
           noWrap
           style={{paddingLeft:5, paddingRight:5, color: "white", width:120, overflow:"hidden"}}
-          >{imageSelected.name ?? `No file chosen...`}
+          >{cloudinaryUrl.name ?? `No file chosen...`}
 
         </Typography>
 
@@ -287,12 +268,21 @@ function Publish() {
           aria-label="delete" 
           // disabled 
           style={{opacity:"100%"}}  
-          onClick={console.log(imageSelected.name)}
+          onClick={console.log(cloudinaryUrl)}
           >   
           <DeleteIcon />
         </IconButton>
-      
       </Grid>
+      <Button
+            onClick={ () => {
+            submitProject();
+            // textInput.current.value='';
+            }}
+          style={{marginTop:20}}
+          variant="outlined"
+        >
+          Submit
+        </Button>
 
     </Grid>
   )
