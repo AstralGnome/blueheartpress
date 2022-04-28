@@ -40,7 +40,7 @@ function App() {
   const [ projectTitle, setProjectTitle ]     = useState('')
   const [ creatorName, setCreatorName ]       = useState('')
   const [ projectSummary, setProjectSummary ] = useState('')
-  const [ cloudinaryUrl, setCloudinaryUrl ]   = useState([])
+  const [ cloudinaryUrl, setCloudinaryUrl ]   = useState('')
 
   return (
   <CloudinaryUrlContext.Provider value={{cloudinaryUrl, setCloudinaryUrl}}>

@@ -1,7 +1,7 @@
 
 import { Grid, Button, IconButton, Typography, TextField, Divider } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-// import AddIcon from '@mui/icons-material/Add';
+import AddIcon from '@mui/icons-material/Add';
 // import CheckIcon from '@mui/icons-material/Check';
 import {Image} from 'cloudinary-react'
 import Axios from 'axios'
@@ -16,6 +16,7 @@ import {
   ProjectSummaryContext,
   CloudinaryUrlContext
   } from '../../Helper/Context';
+import { useState } from 'react';
 
 
 
@@ -54,6 +55,16 @@ function Publish() {
     ).then(res => setCloudinaryUrl(res.data._url))
       .then(err => console.log(err))
   };
+
+  //10 possible text fields:
+  const [textFieldValues, setTextFieldValues] = useState([{id:0, value:""}])
+  
+  const addTextField = () => {
+    setTextFieldValues([...textFieldValues, {
+      id: textFieldValues.length,
+      value: "",
+    }]);
+  }
 
   return (
   <Grid 
@@ -116,32 +127,37 @@ function Publish() {
               >{"Creator(s)"}
           </Typography>
         </Grid>
+      {textFieldValues.map((creator) =>  
       <Grid 
+        key={creator.id}
         container
         justifyContent="center"
         alignItems="center"
-        item xs={12}>  
-        <TextField 
+        item xs={12}>
+        <TextField
+            key={creator.id}
             style={{width: 350}}
             size="small"
             variant="outlined"
             required
             onChange={(event) => {
-              setCreatorName(event.target.value)
-            }}
-            />
-            <Button
+              setCreatorName(event.target.value);
+              }}/>
+      </Grid>
+      )}
+
+      <IconButton
         onClick={() => {
+          console.log(textFieldValues)
+          addTextField();
         // textInput.current.value='';
         }}
           style={{marginLeft:10}}
           variant="outlined"
         >
-          Submit
-        </Button>
+          <AddIcon/>
+        </IconButton>
 
-      </Grid>
-      
       <Divider/>
 
       <Grid
@@ -268,7 +284,7 @@ function Publish() {
           aria-label="delete" 
           // disabled 
           style={{opacity:"100%"}}  
-          onClick={console.log(cloudinaryUrl)}
+          // onClick={console.log(cloudinaryUrl)}
           >   
           <DeleteIcon />
         </IconButton>
