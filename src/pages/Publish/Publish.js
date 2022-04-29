@@ -3,7 +3,7 @@ import { Grid, Button, IconButton, Typography, TextField, Divider } from '@mui/m
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-import CheckIcon from '@mui/icons-material/Check';
+// import CheckIcon from '@mui/icons-material/Check';
 import {Image} from 'cloudinary-react'
 import Axios from 'axios'
 import "./Publish.css"
