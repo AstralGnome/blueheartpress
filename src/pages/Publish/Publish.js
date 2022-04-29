@@ -2,7 +2,8 @@
 import { Grid, Button, IconButton, Typography, TextField, Divider } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
-// import CheckIcon from '@mui/icons-material/Check';
+import RemoveIcon from '@mui/icons-material/Remove';
+import CheckIcon from '@mui/icons-material/Check';
 import {Image} from 'cloudinary-react'
 import Axios from 'axios'
 import "./Publish.css"
@@ -57,13 +58,18 @@ function Publish() {
   };
 
   //10 possible text fields:
-  const [textFieldValues, setTextFieldValues] = useState([{id:0, value:""}])
-  
+  const [textField, setTextField] = useState([{id:0}])
+  // const [creatorFieldValues, setCreatorFieldValues] = useState('')
+
   const addTextField = () => {
-    setTextFieldValues([...textFieldValues, {
-      id: textFieldValues.length,
-      value: "",
+    setTextField([...textField, {
+      id: textField
     }]);
+  }
+
+  const removeTextField = (id) => {
+    const newFieldValue = textField.filter((creator) => creator.id !== id );
+    setTextField(newFieldValue);
   }
 
   return (
@@ -75,7 +81,7 @@ function Publish() {
     style={{ minHeight: '100vh' }}>
     
     <Grid
-      style={{paddingTop: 30}} 
+      style={{paddingTop: 10}} 
       justifyContent="center"
       item xs={12}> 
         <Typography 
@@ -127,7 +133,7 @@ function Publish() {
               >{"Creator(s)"}
           </Typography>
         </Grid>
-      {textFieldValues.map((creator) =>  
+      {textField.map((creator) =>  
       <Grid 
         key={creator.id}
         container
@@ -135,29 +141,41 @@ function Publish() {
         alignItems="center"
         item xs={12}>
         <TextField
-            key={creator.id}
-            style={{width: 350}}
+            style={{width: 350, paddingBottom:10}}
             size="small"
             variant="outlined"
             required
             onChange={(event) => {
-              setCreatorName(event.target.value);
+            setCreatorName(creatorName.concat(event.target.value));
               }}/>
+          <IconButton
+            style={{margin: 0, padding: 0}}
+            onClick={() => {
+            console.log(textField)
+            removeTextField(creator.id);
+          // textInput.current.value='';
+          }}
+            // style={{marginLeft:10}}
+            variant="outlined"
+          >
+            <RemoveIcon/>
+          </IconButton>
       </Grid>
       )}
 
-      <IconButton
-        onClick={() => {
-          console.log(textFieldValues)
-          addTextField();
-        // textInput.current.value='';
-        }}
-          style={{marginLeft:10}}
-          variant="outlined"
-        >
-          <AddIcon/>
-        </IconButton>
-
+      <Grid>
+        <IconButton
+          onClick={() => {
+            console.log(textField)
+            addTextField();
+          // textInput.current.value='';
+          }}
+            variant="outlined"
+          >
+            { textField.length < 5 && <AddIcon/>}
+          </IconButton>
+      </Grid>
+      
       <Divider/>
 
       <Grid
@@ -189,16 +207,6 @@ function Publish() {
               setProjectSummary(event.target.value);
             }}
         />
-        <Button
-        onClick={ () => {
-        submitProject();
-        // textInput.current.value='';
-        }}
-          style={{marginLeft:10}}
-          variant="outlined"
-        >
-          Submit
-        </Button>
       </Grid>
 
       <Grid item xs={12}> 
