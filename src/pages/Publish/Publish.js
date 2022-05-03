@@ -72,6 +72,8 @@ function Publish() {
     setTextField(newFieldValue);
   }
 
+  console.log(textField);
+
   return (
   <Grid 
     container
@@ -146,12 +148,13 @@ function Publish() {
             variant="outlined"
             required
             onChange={(event) => {
-            setCreatorName(creatorName.concat(event.target.value));
+            setCreatorName(...creatorName, event.target.value);
               }}/>
           <IconButton
             style={{margin: 0, padding: 0}}
             onClick={() => {
             console.log(textField)
+            console.log(creatorName)
             removeTextField(creator.id);
           // textInput.current.value='';
           }}
@@ -174,6 +177,7 @@ function Publish() {
           >
             { textField.length < 5 && <AddIcon/>}
           </IconButton>
+          <Typography style={{color: "white"}}>Value is : {creatorName}</Typography>
       </Grid>
       
       <Divider/>

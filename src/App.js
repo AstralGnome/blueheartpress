@@ -38,7 +38,7 @@ function App() {
   const [ password, setPassword ]             = useState('')
   const [ userId, setUserId ]                 = useState('')
   const [ projectTitle, setProjectTitle ]     = useState('')
-  const [ creatorName, setCreatorName ]       = useState('')
+  const [ creatorName, setCreatorName ]       = useState([])
   const [ projectSummary, setProjectSummary ] = useState('')
   const [ cloudinaryUrl, setCloudinaryUrl ]   = useState('')
 
