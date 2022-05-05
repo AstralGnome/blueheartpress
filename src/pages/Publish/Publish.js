@@ -3,7 +3,6 @@ import { Grid, Button, IconButton, Typography, TextField, Divider } from '@mui/m
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-// import CheckIcon from '@mui/icons-material/Check';
 import {Image} from 'cloudinary-react'
 import Axios from 'axios'
 import "./Publish.css"
@@ -102,12 +101,10 @@ function Publish() {
         <TextField
             color={ projectTitle ? 'success' : 'warning' }
             focused
-            // label="username"
             style={{width: 350}}
             size="small"
             variant="outlined"
             required
-            // fullWidth
             onChange={(event) => {
               setProjectTitle(event.target.value);
             }}
@@ -134,9 +131,7 @@ function Publish() {
               >{"Creator(s)"}
           </Typography>
         </Grid>
-      {/* {textField.map((creator) =>   */}
       <Grid 
-        // key={creator.id}
         container
         justifyContent="center"
         alignItems="center"
@@ -182,7 +177,11 @@ function Publish() {
         item xs={12}
         style={{width : 350}}
         >
-          <Typography key={index} style={{color: "white"}}>&#8226; {creatorName}</Typography>  
+          <Typography 
+            key={index} 
+            className="animate__animated animate__fadeInDown"
+            style={{color: "white"}}>&#8226; {creatorName}
+            </Typography>  
           <IconButton
             variant="outlined"
             style={{margin: 0, padding: 0}}
@@ -239,7 +238,6 @@ function Publish() {
           paddingBottom: 15,
           }}
             variant="body1"
-            // className="animate__animated animate__fadeInDown"
             >Add Files
         </Typography>
       </Grid>
