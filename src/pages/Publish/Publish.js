@@ -62,27 +62,11 @@ function Publish() {
       .then(err => console.log(err))
   };
 
-  //10 possible text fields:
   const [textField, setTextField] = useState("")
-  // const [creatorFieldValues, setCreatorFieldValues] = useState('')
 
   const deleteCreator = (index) => {
     setCreatorName([...creatorName.filter((creator, i) => i !== index)]
     )}
-  // const deleteCreator = (index) => {
-  //   setCreatorName(creatorName.filter(creator => creatorName.index !== creator.index))
-  // }
-
-  // const addTextField = () => {
-  //   setTextField([...textField, {
-  //     id: textField
-  //   }]);
-  // }
-
-  // const removeTextField = (id) => {
-  //   const newFieldValue = textField.filter((creator) => creator.id !== id );
-  //   setTextField(newFieldValue);
-  // }
 
   console.log("TEXTFIELD:", textField);
   console.log("CREATOR_NAME", creatorName)
@@ -295,7 +279,7 @@ function Publish() {
           onClick={uploadImage}
           variant="outlined"
         >
-          Submit      
+          Add      
         </Button>
 
       </Grid>
@@ -343,7 +327,7 @@ function Publish() {
           style={{marginTop:20}}
           variant="outlined"
         >
-          Submit
+          Submit Project
         </Button>
 
     </Grid>
