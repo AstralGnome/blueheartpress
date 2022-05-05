@@ -1,9 +1,9 @@
 
 import { Grid, Button, IconButton, Typography, TextField, Divider } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import AddIcon from '@mui/icons-material/Add';
+// import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-// import CheckIcon from '@mui/icons-material/Check';
+import CheckIcon from '@mui/icons-material/Check';
 import {Image} from 'cloudinary-react'
 import Axios from 'axios'
 import "./Publish.css"
@@ -24,6 +24,7 @@ import { useState } from 'react';
 function Publish() {
   
   const hiddenFileInput = useRef(null)
+  const textRef         = useRef(null)
 
   const { userId }                             = useContext(UserIdContext);
   const { projectTitle, setProjectTitle }      = useContext(ProjectTitleContext);
@@ -33,6 +34,10 @@ function Publish() {
 
   const chooseFileHandleClick = () => {
     hiddenFileInput.current.click();
+  }
+
+  const clearText = () => {
+    textRef.current.value = "";
   }
 
   const submitProject = () => {
@@ -58,22 +63,30 @@ function Publish() {
   };
 
   //10 possible text fields:
-  const [textField, setTextField] = useState([{id:0}])
+  const [textField, setTextField] = useState("")
   // const [creatorFieldValues, setCreatorFieldValues] = useState('')
 
-  const addTextField = () => {
-    setTextField([...textField, {
-      id: textField
-    }]);
-  }
+  const deleteCreator = (index) => {
+    setCreatorName([...creatorName.filter((creator, i) => i !== index)]
+    )}
+  // const deleteCreator = (index) => {
+  //   setCreatorName(creatorName.filter(creator => creatorName.index !== creator.index))
+  // }
 
-  const removeTextField = (id) => {
-    const newFieldValue = textField.filter((creator) => creator.id !== id );
-    setTextField(newFieldValue);
-  }
+  // const addTextField = () => {
+  //   setTextField([...textField, {
+  //     id: textField
+  //   }]);
+  // }
 
-  console.log(textField);
+  // const removeTextField = (id) => {
+  //   const newFieldValue = textField.filter((creator) => creator.id !== id );
+  //   setTextField(newFieldValue);
+  // }
 
+  console.log("TEXTFIELD:", textField);
+  console.log("CREATOR_NAME", creatorName)
+  
   return (
   <Grid 
     container
@@ -135,51 +148,60 @@ function Publish() {
               >{"Creator(s)"}
           </Typography>
         </Grid>
-      {textField.map((creator) =>  
+      {/* {textField.map((creator) =>   */}
       <Grid 
-        key={creator.id}
+        // key={creator.id}
         container
         justifyContent="center"
         alignItems="center"
         item xs={12}>
         <TextField
-            style={{width: 350, paddingBottom:10}}
+            inputRef={textRef}
+            style={{width: 320, paddingLeft: 10, paddingBottom:10}}
             size="small"
             variant="outlined"
             required
-            onChange={(event) => {
-            setCreatorName(...creatorName, event.target.value);
+            onChange={(e) => {
+            setTextField(e.target.value);
               }}/>
-          <IconButton
-            style={{margin: 0, padding: 0}}
-            onClick={() => {
-            console.log(textField)
-            console.log(creatorName)
-            removeTextField(creator.id);
-          // textInput.current.value='';
-          }}
-            // style={{marginLeft:10}}
-            variant="outlined"
-          >
-            <RemoveIcon/>
-          </IconButton>
-      </Grid>
-      )}
-
-      <Grid>
+            {/* setCreatorName(...creatorName, event.target.value);
+              }}/> */}
         <IconButton
           onClick={() => {
-            console.log(textField)
-            addTextField();
-          // textInput.current.value='';
+            setCreatorName(creatorName.concat(textField));
+            clearText();
+            setTextField();
           }}
             variant="outlined"
           >
-            { textField.length < 5 && <AddIcon/>}
+          {textField && <CheckIcon/>}
           </IconButton>
-          <Typography style={{color: "white"}}>Value is : {creatorName}</Typography>
       </Grid>
       
+      <Grid>
+      {creatorName.map((creatorName, index) => (
+      <Grid
+        key={index}
+        container
+        justifyContent="space-between"
+        alignItems="center"
+        item xs={12}
+        style={{width : 325}}
+        >
+          <Typography key={index} style={{color: "white"}}>&#8226; {creatorName}</Typography>  
+          <IconButton
+            variant="outlined"
+            style={{margin: 0, padding: 0}}
+            onClick={() => {
+              deleteCreator(index)
+              console.log(index)
+          }}
+          >
+            {creatorName.length > 0 && <RemoveIcon />}
+          </IconButton>
+      </Grid>
+      ))}
+      </Grid>
       <Divider/>
 
       <Grid
