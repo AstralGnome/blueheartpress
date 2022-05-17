@@ -1,9 +1,9 @@
 
 import { Grid, Button, IconButton, Typography, TextField, Divider } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
+// import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-import {Image} from 'cloudinary-react'
+// import {Image} from 'cloudinary-react'
 import Axios from 'axios'
 import "./Publish.css"
 import { useRef } from 'react';
@@ -22,7 +22,7 @@ import { useState } from 'react';
 
 function Publish() {
   
-  const hiddenFileInput = useRef(null)
+  // const hiddenFileInput = useRef(null)
   const textRef         = useRef(null)
 
   const { userId }                             = useContext(UserIdContext);
@@ -31,9 +31,9 @@ function Publish() {
   const { cloudinaryUrl, setCloudinaryUrl }    = useContext(CloudinaryUrlContext);
   const { creatorName, setCreatorName}         = useContext(CreatorNameContext);
 
-  const chooseFileHandleClick = () => {
-    hiddenFileInput.current.click();
-  }
+  // const chooseFileHandleClick = () => {
+  //   hiddenFileInput.current.click();
+  // }
 
   const clearText = () => {
     textRef.current.value = "";
@@ -48,18 +48,54 @@ function Publish() {
     }).then(response => console.log('PT Posting data', response)) 
       .catch(err => console.log(err))
   }
+  const [fileInput, setFileInput] = useState('')
+  const [selectedFile, setSelectedFile] = useState('')
+  const [previewSource, setPreviewSource] = useState('')
 
-  const uploadImage = () => {
+  const handleFileInputChange = (e) => {
+    const file = e.target.files[0];
+    previewFile(file)
+  }
+
+  const previewFile = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setPreviewSource(reader.result);
+    }
+  }
+
+  const handleSubmitFile = (e) => {
+    e.preventDefault();
+    if (!previewSource) return;
+    uploadImage(previewSource);
+  }
+
+  const uploadImage = async (base64EncodedImage) => {
+    console.log(base64EncodedImage)
+    try {
+      await fetch('/api/upload', {
+        method: 'POST',
+        body:JSON.stringify({data: base64EncodedImage}),
+        headers: {'content-type':'application/json'}
+      
+    })
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  // const uploadImage = () => {
     
-    const formData = new FormData();
-    formData.append("upload_preset", "xhpu1wfy");
-    formData.append("file", cloudinaryUrl);
+  //   const formData = new FormData();
+  //   formData.append("upload_preset", "xhpu1wfy");
+  //   formData.append("file", cloudinaryUrl);
   
-    Axios.post('https://api.cloudinary.com/v1_1/astralgnome/image/upload',
-    formData
-    ).then(res => setCloudinaryUrl(res.data._url))
-      .then(err => console.log(err))
-  };
+  //   Axios.post('https://api.cloudinary.com/v1_1/astralgnome/image/upload',
+  //   formData
+  //   ).then(res => setCloudinaryUrl(res.data._url))
+  //     .then(err => console.log(err))
+  // };
 
   const [textField, setTextField] = useState("")
 
@@ -229,7 +265,7 @@ function Publish() {
             }}
         />
       </Grid>
-
+      
       <Grid item xs={12}> 
         <Typography 
           style={{
@@ -241,7 +277,44 @@ function Publish() {
             >Add Files
         </Typography>
       </Grid>
-                
+              
+      <Grid 
+      container
+      spacing={0}
+      direction="row"
+      alignItems="center"
+      justifyContent="center"
+      item xs={12}>
+      </Grid>
+      <form onSubmit={handleSubmitFile}>
+        <input 
+            style={{}}
+            type="file"
+            name="image"
+            value={fileInput}
+            onChange={handleFileInputChange}
+        />
+        <button type="submit">Submit</button>
+      </form>
+      {previewSource && (
+        <img 
+          src={previewSource} 
+          alt="chosen" 
+          style={{height: '50px'}}/>
+      )}
+
+      {/* <Grid item xs={12}> 
+        <Typography 
+          style={{
+          color: 'lightgrey',
+          paddingTop: 30,
+          paddingBottom: 15,
+          }}
+            variant="body1"
+            >Add Files
+        </Typography>
+      </Grid>
+              
       <Grid 
       container
       spacing={0}
@@ -316,7 +389,7 @@ function Publish() {
           >   
           <DeleteIcon />
         </IconButton>
-      </Grid>
+      </Grid> */}
       <Button
             onClick={ () => {
             submitProject();
